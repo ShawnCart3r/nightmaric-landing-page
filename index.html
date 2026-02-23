@@ -906,6 +906,24 @@
       opacity: 1;
       transform: translateY(0);
     }
+    .form-embed {
+  width: 100%;
+  margin-top: 18px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.02);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.form-embed iframe {
+  display: block;
+  width: 100%;
+  border: 0;
+}
+
+@media (max-width: 700px) {
+  .form-embed iframe { height: 980px; }
+}
 
     @media (max-width: 700px) {
       .persephone-inner { grid-template-columns: 1fr; gap: 50px; }
@@ -1049,42 +1067,7 @@
       </a>
     </div>
   </section>
-
-  <!-- EMAIL CAPTURE BAND -->
-  <section class="email-band">
-    <div class="email-band-inner fade-in">
-      <p class="section-label">Join the Saga</p>
-      <h2>Reality is unraveling.<br><em>Be first to witness it.</em></h2>
-      <p>New episodes, release dates, and dispatches from the Nightmaric universe — straight to your inbox.</p>
-
-      <div class="email-form" id="emailForm">
-        <div class="email-form-row">
-          <input
-            class="email-input"
-            type="text"
-            id="emailName"
-            placeholder="Your name"
-            autocomplete="given-name"
-          />
-          <input
-            class="email-input"
-            type="email"
-            id="emailAddress"
-            placeholder="Your email"
-            autocomplete="email"
-            required
-          />
-        </div>
-        <button class="email-submit" id="emailSubmitBtn" onclick="submitEmail()">
-          <span id="emailSubmitLabel">Join the List</span>
-        </button>
-        <div class="form-message" id="formMessage"></div>
-        <p class="privacy-note">No spam. Unsubscribe anytime.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- FINAL CTA + FLIP CARDS -->
+   <!-- FINAL CTA + FLIP CARDS -->
   <section class="final-cta">
     <div class="final-cta-inner fade-in">
       <h2>Reality has begun<br><em>to splinter</em></h2>
@@ -1150,14 +1133,47 @@
     </div>
   </section>
 
+  <!-- EMAIL CAPTURE BAND -->
+  <!-- EMAIL CAPTURE BAND (Google Form Embed) -->
+<section class="email-band" id="signup">
+  <div class="email-band-inner fade-in">
+    <p class="section-label">Join the Saga</p>
+    <h2>Reality is unraveling.<br><em>Be first to witness it.</em></h2>
+    <p>New episodes, release dates, and dispatches from the Nightmaric universe — straight to your inbox.</p>
+
+    <div class="form-embed">
+      <iframe
+        src="https://docs.google.com/forms/d/1FIeTCrKHfI6agoQvFyT31quLdj3hKmj1K4qSfhFXtp4/viewform?embedded=true"
+        width="100%"
+        height="780"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+        title="Nightmaric Saga Email Signup"
+      >
+        Loading…
+      </iframe>
+    </div>
+
+    <p class="privacy-note">No spam. Unsubscribe anytime.</p>
+  </div>
+</section>
+
+ 
+
   <!-- FOOTER -->
   <footer class="footer">
     <p>© <span id="year"></span> Shawn Carter — The Nightmaric Saga</p>
   </footer>
 
   <script>
-  // ✅ Apps Script Web App URL (your deployed /exec)
-  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzYNti96OxWabUsrd6vs-c3MSH3pq7eAcfkO3Gez3UYLxetPkjnploT52gIsuvs2L6u/exec';
+  // ✅ Google Form endpoint (REPLACE FORM_ID_HERE)
+  const FORM_ACTION_URL = 'https://docs.google.com/forms/d/e/FORM_ID_HERE/formResponse';
+
+  // ✅ Your Google Form entry IDs (REPLACE these)
+  // Example format: 'entry.1234567890'
+  const ENTRY_NAME  = 'ENTRY_NAME_HERE';
+  const ENTRY_EMAIL = 'ENTRY_EMAIL_HERE';
 
   // Year
   document.getElementById("year").textContent = new Date().getFullYear();
@@ -1218,7 +1234,7 @@
     setTimeout(() => document.getElementById('emailName').focus(), 600);
   }
 
-  async function submitEmail() {
+  function submitEmail() {
     const nameEl  = document.getElementById('emailName');
     const emailEl = document.getElementById('emailAddress');
     const btn     = document.getElementById('emailSubmitBtn');
@@ -1249,68 +1265,61 @@
     // Meta Pixel lead
     if (typeof fbq !== 'undefined') fbq('track', 'Lead');
 
-    // ✅ JSONP request (CORS-free + works on iPhone Safari)
     try {
-      const callbackName = '__signupCallback_' + Date.now();
+      // ✅ Hidden iframe target (CORS-safe + works on iPhone Safari)
+      let iframe = document.getElementById('hiddenFormTarget');
+      if (!iframe) {
+        iframe = document.createElement('iframe');
+        iframe.name = 'hiddenFormTarget';
+        iframe.id = 'hiddenFormTarget';
+        iframe.style.display = 'none';
+        document.body.appendChild(iframe);
+      }
 
-      const cleanup = (scriptEl) => {
-        try { delete window[callbackName]; } catch(_) {}
-        if (scriptEl && scriptEl.parentNode) scriptEl.parentNode.removeChild(scriptEl);
-      };
+      // Create hidden form
+      const form = document.createElement('form');
+      form.action = FORM_ACTION_URL;
+      form.method = 'POST';
+      form.target = 'hiddenFormTarget';
 
-      const timeout = setTimeout(() => {
-        cleanup(script);
-        btn.disabled = false;
-        label.textContent = 'Join the List';
-        msgEl.textContent = 'Signup failed: request timed out.';
-        msgEl.className = 'form-message error';
-        msgEl.style.display = 'block';
-      }, 12000);
+      // Name field
+      const nameInput = document.createElement('input');
+      nameInput.type = 'hidden';
+      nameInput.name = ENTRY_NAME;
+      nameInput.value = name;
+      form.appendChild(nameInput);
 
-      window[callbackName] = (data) => {
-        clearTimeout(timeout);
-        cleanup(script);
+      // Email field
+      const emailInput = document.createElement('input');
+      emailInput.type = 'hidden';
+      emailInput.name = ENTRY_EMAIL;
+      emailInput.value = email;
+      form.appendChild(emailInput);
 
-        btn.disabled = false;
-        label.textContent = 'Join the List';
+      // (Optional) small cache-bust / form params Google accepts
+      const fvv = document.createElement('input');
+      fvv.type = 'hidden';
+      fvv.name = 'fvv';
+      fvv.value = '1';
+      form.appendChild(fvv);
 
-        if (!data || data.result !== 'success') {
-          msgEl.textContent = 'Signup failed: ' + (data?.message || 'Unknown error');
-          msgEl.className = 'form-message error';
-          msgEl.style.display = 'block';
-          return;
-        }
+      document.body.appendChild(form);
 
-        // Success UI
-        nameEl.value = '';
-        emailEl.value = '';
-        msgEl.textContent = '✦ You\'re in. Reality will never be the same.';
-        msgEl.className = 'form-message success';
-        msgEl.style.display = 'block';
-      };
+      // Submit
+      form.submit();
 
-      const url = SHEET_URL + '?' + new URLSearchParams({
-        name,
-        email,
-        cb: Date.now().toString(),
-        callback: callbackName
-      }).toString();
+      // Cleanup
+      document.body.removeChild(form);
 
-      const script = document.createElement('script');
-      script.src = url;
-      script.async = true;
+      // Success UI (Google Forms blocks reading response; assume success)
+      btn.disabled = false;
+      label.textContent = 'Join the List';
+      nameEl.value = '';
+      emailEl.value = '';
 
-      script.onerror = () => {
-        clearTimeout(timeout);
-        cleanup(script);
-        btn.disabled = false;
-        label.textContent = 'Join the List';
-        msgEl.textContent = 'Signup failed: could not reach signup endpoint.';
-        msgEl.className = 'form-message error';
-        msgEl.style.display = 'block';
-      };
-
-      document.body.appendChild(script);
+      msgEl.textContent = "✦ You're in. Reality will never be the same.";
+      msgEl.className = 'form-message success';
+      msgEl.style.display = 'block';
 
     } catch (err) {
       btn.disabled = false;
@@ -1325,6 +1334,6 @@
   document.getElementById('emailAddress').addEventListener('keydown', e => {
     if (e.key === 'Enter') submitEmail();
   });
-  </script>
+</script>
 </body>
 </html>
