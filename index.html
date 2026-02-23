@@ -54,6 +54,7 @@
       line-height: 1.6;
       overflow-x: hidden;
       cursor: crosshair;
+      -webkit-text-size-adjust: 100%;
     }
 
     body::before {
@@ -66,21 +67,25 @@
       opacity: 0.55;
     }
 
-    .cursor-dot {
-      width: 6px;
-      height: 6px;
-      background: var(--accent-light);
-      border-radius: 50%;
-      position: fixed;
-      pointer-events: none;
-      z-index: 10000;
-      transform: translate(-50%, -50%);
-      transition: opacity 0.2s;
-      box-shadow: 0 0 12px var(--accent-light);
+    /* Hide custom cursor on touch devices */
+    @media (hover: hover) {
+      .cursor-dot {
+        width: 6px;
+        height: 6px;
+        background: var(--accent-light);
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 10000;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.2s;
+        box-shadow: 0 0 12px var(--accent-light);
+      }
     }
 
+    /* ── HERO ── */
     .hero {
-      min-height: 100vh;
+      min-height: 100svh;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -135,7 +140,7 @@
 
     h1 {
       font-family: 'Syne', sans-serif;
-      font-size: clamp(46px, 8vw, 90px);
+      font-size: clamp(36px, 8vw, 90px);
       font-weight: 800;
       line-height: 0.95;
       letter-spacing: -0.03em;
@@ -157,7 +162,7 @@
 
     .hero-tagline {
       margin-top: 32px;
-      font-size: clamp(17px, 2.2vw, 21px);
+      font-size: clamp(16px, 2.2vw, 21px);
       font-weight: 300;
       color: rgba(232,228,220,0.72);
       line-height: 1.8;
@@ -182,6 +187,7 @@
       align-items: center;
     }
 
+    /* ── BUTTONS ── */
     .btn {
       display: inline-block;
       font-family: 'Syne', sans-serif;
@@ -199,6 +205,8 @@
       transition: color 0.3s, border-color 0.3s;
       text-decoration: none;
       cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
 
     .btn::before {
@@ -211,8 +219,13 @@
       z-index: -1;
     }
 
-    .btn:hover::before { transform: translateX(0); }
-    .btn:hover { border-color: transparent; }
+    /* On touch devices, use active state instead of hover */
+    @media (hover: hover) {
+      .btn:hover::before { transform: translateX(0); }
+      .btn:hover { border-color: transparent; }
+    }
+    .btn:active::before { transform: translateX(0); }
+    .btn:active { border-color: transparent; }
 
     .btn-ghost {
       border-color: rgba(232,228,220,0.18);
@@ -220,8 +233,6 @@
       font-size: 10px;
       padding: 18px 28px;
     }
-
-    .btn-ghost:hover { color: #fff; }
 
     .btn-email {
       border-color: rgba(106,61,232,0.5);
@@ -248,6 +259,7 @@
       animation: scrollLine 2s 1.8s ease-in-out infinite;
     }
 
+    /* ── MARQUEE ── */
     .marquee-wrap {
       background: var(--accent);
       overflow: hidden;
@@ -272,8 +284,9 @@
       margin: 0 16px;
     }
 
+    /* ── ESCALATION ── */
     .escalation {
-      padding: 120px 24px;
+      padding: 80px 24px;
       max-width: 860px;
       margin: 0 auto;
       text-align: center;
@@ -296,10 +309,10 @@
     .escalation-list li {
       counter-increment: steps;
       position: relative;
-      font-size: clamp(18px, 2.8vw, 30px);
+      font-size: clamp(16px, 2.8vw, 30px);
       font-weight: 300;
       color: rgba(232,228,220,0.4);
-      padding: 24px 0 24px 48px;
+      padding: 20px 0 20px 44px;
       border-bottom: 1px solid rgba(255,255,255,0.05);
       transition: color 0.4s;
       cursor: default;
@@ -321,7 +334,9 @@
       opacity: 0.6;
     }
 
-    .escalation-list li:hover { color: var(--text); }
+    @media (hover: hover) {
+      .escalation-list li:hover { color: var(--text); }
+    }
 
     .escalation-list li:last-child {
       border-bottom: none;
@@ -329,7 +344,7 @@
       font-weight: 400;
       font-style: italic;
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(22px, 3.2vw, 36px);
+      font-size: clamp(20px, 3.2vw, 36px);
       text-align: center;
       padding-left: 0;
       letter-spacing: 0;
@@ -339,8 +354,9 @@
 
     .escalation-cta { margin-top: 60px; }
 
+    /* ── PERSEPHONE ── */
     .persephone {
-      padding: 100px 24px;
+      padding: 80px 24px;
       background: var(--void);
       position: relative;
       overflow: hidden;
@@ -378,7 +394,7 @@
 
     .persephone-text h2 {
       font-family: 'Syne', sans-serif;
-      font-size: clamp(24px, 3vw, 38px);
+      font-size: clamp(22px, 3vw, 38px);
       font-weight: 800;
       line-height: 1.05;
       letter-spacing: -0.03em;
@@ -386,7 +402,7 @@
     }
 
     .persephone-text p {
-      font-size: 18px;
+      font-size: clamp(16px, 2vw, 18px);
       font-weight: 300;
       color: rgba(232,228,220,0.7);
       line-height: 1.75;
@@ -406,7 +422,7 @@
     }
 
     .quote-text {
-      font-size: clamp(22px, 2.8vw, 28px);
+      font-size: clamp(20px, 2.8vw, 28px);
       font-style: italic;
       font-weight: 300;
       color: var(--text);
@@ -422,8 +438,9 @@
       color: var(--muted);
     }
 
+    /* ── SOCIAL PROOF ── */
     .proof {
-      padding: 100px 24px;
+      padding: 80px 24px;
       max-width: 860px;
       margin: 0 auto;
       text-align: center;
@@ -445,11 +462,14 @@
       transition: background 0.3s;
     }
 
-    .stat:hover { background: rgba(255,255,255,0.04); }
+    @media (hover: hover) {
+      .stat:hover { background: rgba(255,255,255,0.04); }
+      .stat:hover .stat-accent { transform: scaleX(1); }
+    }
 
     .stat-number {
       font-family: 'Syne', sans-serif;
-      font-size: clamp(26px, 3.5vw, 48px);
+      font-size: clamp(22px, 3.5vw, 48px);
       font-weight: 800;
       letter-spacing: -0.04em;
       color: #fff;
@@ -479,13 +499,12 @@
       transform-origin: left;
     }
 
-    .stat:hover .stat-accent { transform: scaleX(1); }
-
+    /* ── EMAIL BAND ── */
     .email-band {
       background: var(--void);
       border-top: 1px solid rgba(106,61,232,0.15);
       border-bottom: 1px solid rgba(106,61,232,0.15);
-      padding: 70px 24px;
+      padding: 60px 24px;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -517,7 +536,7 @@
 
     .email-band h2 {
       font-family: 'Syne', sans-serif;
-      font-size: clamp(24px, 3.5vw, 38px);
+      font-size: clamp(22px, 3.5vw, 38px);
       font-weight: 800;
       letter-spacing: -0.03em;
       line-height: 1.05;
@@ -532,111 +551,27 @@
     }
 
     .email-band p {
-      font-size: 16px;
+      font-size: clamp(15px, 2vw, 16px);
       font-weight: 300;
       color: rgba(232,228,220,0.55);
       margin-bottom: 36px;
       line-height: 1.6;
     }
 
-    .email-form {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .email-form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .email-input {
+    .form-embed {
       width: 100%;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 2px;
-      padding: 16px 20px;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 17px;
-      font-weight: 300;
-      color: var(--text);
-      outline: none;
-      transition: border-color 0.3s, background 0.3s;
-    }
-
-    .email-input::placeholder {
-      color: rgba(232,228,220,0.28);
-    }
-
-    .email-input:focus {
-      border-color: rgba(106,61,232,0.5);
-      background: rgba(106,61,232,0.04);
-    }
-
-    .email-submit {
-      width: 100%;
-      padding: 18px;
-      font-family: 'Syne', sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #fff;
-      background: transparent;
-      border: 1px solid rgba(106,61,232,0.6);
-      border-radius: 2px;
-      cursor: pointer;
-      position: relative;
+      margin-top: 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.02);
+      border-radius: 4px;
       overflow: hidden;
-      transition: border-color 0.3s;
     }
 
-    .email-submit::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, var(--violet) 0%, var(--accent) 100%);
-      transform: translateX(-101%);
-      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
-      z-index: 0;
-    }
-
-    .email-submit:hover::before { transform: translateX(0); }
-    .email-submit:hover { border-color: transparent; }
-
-    .email-submit span {
-      position: relative;
-      z-index: 1;
-    }
-
-    .email-submit:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-
-    .form-message {
-      font-family: 'Syne', sans-serif;
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 14px;
-      border-radius: 2px;
-      display: none;
-    }
-
-    .form-message.success {
+    .form-embed iframe {
       display: block;
-      color: #a8e6cf;
-      background: rgba(168,230,207,0.06);
-      border: 1px solid rgba(168,230,207,0.15);
-    }
-
-    .form-message.error {
-      display: block;
-      color: var(--accent-light);
-      background: rgba(233,30,122,0.06);
-      border: 1px solid rgba(233,30,122,0.15);
+      width: 100%;
+      border: 0;
+      height: 780px;
     }
 
     .privacy-note {
@@ -648,8 +583,9 @@
       color: rgba(255,255,255,0.2);
     }
 
+    /* ── FINAL CTA ── */
     .final-cta {
-      padding: 130px 24px;
+      padding: 100px 24px;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -676,7 +612,7 @@
 
     .final-cta h2 {
       font-family: 'Syne', sans-serif;
-      font-size: clamp(38px, 6vw, 70px);
+      font-size: clamp(32px, 6vw, 70px);
       font-weight: 800;
       line-height: 0.95;
       letter-spacing: -0.03em;
@@ -691,19 +627,20 @@
     }
 
     .final-cta p {
-      font-size: 18px;
+      font-size: clamp(15px, 2vw, 18px);
       font-weight: 300;
       color: rgba(232,228,220,0.6);
       line-height: 1.7;
     }
 
+    /* ── FLIP CARDS ── */
     .flip-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 28px;
+      gap: 20px;
       max-width: 720px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 0;
       position: relative;
       z-index: 1;
     }
@@ -723,7 +660,11 @@
       transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .flip-card:hover .flip-inner,
+    /* Desktop hover */
+    @media (hover: hover) {
+      .flip-card:hover .flip-inner { transform: rotateY(180deg); }
+    }
+
     .flip-card:focus .flip-inner,
     .flip-card.flipped .flip-inner {
       transform: rotateY(180deg);
@@ -750,9 +691,11 @@
       transition: opacity 0.4s, transform 0.6s;
     }
 
-    .flip-card:hover .flip-front img {
-      opacity: 0.85;
-      transform: scale(1.04);
+    @media (hover: hover) {
+      .flip-card:hover .flip-front img {
+        opacity: 0.85;
+        transform: scale(1.04);
+      }
     }
 
     .flip-front-label {
@@ -760,7 +703,7 @@
       bottom: 0;
       left: 0;
       right: 0;
-      padding: 50px 24px 28px;
+      padding: 50px 20px 24px;
       background: linear-gradient(to top, rgba(5,5,10,0.96) 0%, transparent 100%);
       display: flex;
       flex-direction: column;
@@ -777,12 +720,13 @@
 
     .flip-title {
       font-family: 'Syne', sans-serif;
-      font-size: clamp(20px, 2.8vw, 26px);
+      font-size: clamp(14px, 2.8vw, 26px);
       font-weight: 800;
       letter-spacing: -0.02em;
       color: #fff;
     }
 
+    /* On mobile: show tap hint instead of hover hint */
     .flip-hint {
       position: absolute;
       top: 18px;
@@ -798,7 +742,11 @@
       transition: opacity 0.3s;
     }
 
-    .flip-card:hover .flip-hint { opacity: 0; }
+    @media (hover: hover) {
+      .flip-card:hover .flip-hint { opacity: 0; }
+    }
+
+    .flip-card.flipped .flip-hint { opacity: 0; }
 
     .flip-back {
       transform: rotateY(180deg);
@@ -818,18 +766,20 @@
     }
 
     .flip-back-content {
-      padding: 40px 32px;
+      padding: 28px 24px;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 14px;
+      gap: 10px;
       position: relative;
       z-index: 1;
+      overflow-y: auto;
+      max-height: 100%;
     }
 
     .flip-back-content h3 {
       font-family: 'Syne', sans-serif;
-      font-size: clamp(22px, 2.8vw, 28px);
+      font-size: clamp(16px, 2.8vw, 28px);
       font-weight: 800;
       letter-spacing: -0.03em;
       line-height: 1;
@@ -847,23 +797,24 @@
     }
 
     .flip-back-content p {
-      font-size: 15px;
+      font-size: clamp(13px, 1.8vw, 15px);
       font-weight: 300;
       color: rgba(232,228,220,0.65);
-      line-height: 1.65;
+      line-height: 1.6;
     }
 
     .flip-btn {
-      margin-top: 8px;
+      margin-top: 6px;
       font-size: 10px;
-      padding: 14px 28px;
+      padding: 12px 20px;
       width: 100%;
       text-align: center;
     }
 
+    /* ── FOOTER ── */
     .footer {
       padding: 32px 24px;
-      margin-top: 100px;
+      margin-top: 80px;
       text-align: center;
       border-top: 1px solid rgba(255,255,255,0.04);
     }
@@ -876,6 +827,7 @@
       color: rgba(255,255,255,0.2);
     }
 
+    /* ── ANIMATIONS ── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -906,31 +858,136 @@
       opacity: 1;
       transform: translateY(0);
     }
-    .form-embed {
-  width: 100%;
-  margin-top: 18px;
-  border: 1px solid rgba(255,255,255,0.08);
-  background: rgba(255,255,255,0.02);
-  border-radius: 4px;
-  overflow: hidden;
-}
 
-.form-embed iframe {
-  display: block;
-  width: 100%;
-  border: 0;
-}
+    /* ═══════════════════════════════════════════
+       MOBILE BREAKPOINTS
+    ═══════════════════════════════════════════ */
 
-@media (max-width: 700px) {
-  .form-embed iframe { height: 980px; }
-}
+    /* ── Tablet (max 900px) ── */
+    @media (max-width: 900px) {
+      .persephone-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .flip-grid {
+        max-width: 520px;
+      }
+    }
 
+    /* ── Mobile (max 700px) ── */
     @media (max-width: 700px) {
-      .persephone-inner { grid-template-columns: 1fr; gap: 50px; }
-      .proof-stats { grid-template-columns: 1fr; }
-      .flip-grid { grid-template-columns: 1fr; max-width: 360px; }
-      .flip-card { height: 400px; }
-      .email-form-row { grid-template-columns: 1fr; }
+      /* Hero */
+      .hero {
+        padding: 0 20px 60px;
+        justify-content: flex-end;
+        min-height: 100svh;
+      }
+      .eyebrow {
+        font-size: 9px;
+        letter-spacing: 0.22em;
+        margin-bottom: 16px;
+      }
+      h1 {
+        font-size: clamp(34px, 10vw, 52px);
+      }
+      .hero-tagline {
+        font-size: 16px;
+        margin-top: 20px;
+      }
+      .hero-cta {
+        margin-top: 32px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+      .hero-cta .btn {
+        width: 100%;
+        text-align: center;
+      }
+      .scroll-hint { display: none; }
+
+      /* Escalation */
+      .escalation {
+        padding: 60px 20px;
+      }
+      .escalation-list li {
+        padding: 16px 0 16px 36px;
+        font-size: 16px;
+      }
+      .escalation-cta {
+        margin-top: 40px;
+      }
+      .escalation-cta .btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      /* Persephone */
+      .persephone {
+        padding: 60px 20px;
+      }
+      .persephone-inner {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+      .quote-block {
+        padding: 24px 20px 24px 24px;
+      }
+
+      /* Proof */
+      .proof {
+        padding: 60px 20px;
+      }
+      .proof-stats {
+        grid-template-columns: 1fr;
+        gap: 2px;
+      }
+      .stat {
+        padding: 28px 20px;
+      }
+      .proof .btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      /* Email band */
+      .email-band {
+        padding: 50px 20px;
+      }
+      .form-embed iframe {
+        height: 900px;
+      }
+
+      /* Final CTA */
+      .final-cta {
+        padding: 70px 20px;
+      }
+      .final-cta-inner {
+        margin-bottom: 40px;
+      }
+
+      /* Flip grid — single column on mobile */
+      .flip-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        gap: 16px;
+        padding: 0 4px;
+      }
+      .flip-card {
+        height: 420px;
+      }
+      /* On mobile: tap to flip (not hover) */
+      .flip-hint {
+        content: '';
+      }
+    }
+
+    /* ── Small phones (max 390px) ── */
+    @media (max-width: 390px) {
+      .flip-card { height: 380px; }
+      .flip-back-content { padding: 20px 18px; gap: 8px; }
+      .flip-btn { padding: 10px 16px; }
+      h1 { font-size: 30px; }
     }
   </style>
 </head>
@@ -972,199 +1029,8 @@
         </a>
       </div>
     </div>
-     </section>
-     <!-- MARQUEE -->
-  <div class="marquee-wrap">
-    <div class="marquee-track">
-      <span class="marquee-item">Cosmic Horror <span>✦</span></span>
-      <span class="marquee-item">Ranked Top 30 in Cosmic Horror on Amazon <span>✦</span></span>
-      <span class="marquee-item">The Nightmaric Saga <span>✦</span></span>
-      <span class="marquee-item">All Roads Lead to Persephone <span>✦</span></span>
-      <span class="marquee-item">Cosmic Horror <span>✦</span></span>
-      <span class="marquee-item">Ranked Top 30 in Cosmic Horror on Amazon <span>✦</span></span>
-      <span class="marquee-item">The Nightmaric Saga <span>✦</span></span>
-      <span class="marquee-item">All Roads Lead to Persephone <span>✦</span></span>
-    </div>
-  </div>
-   <!-- FINAL CTA + FLIP CARDS -->
-  <section class="final-cta">
-    <div class="final-cta-inner fade-in">
-      <h2>Reality has begun<br><em>to splinter</em></h2>
-      <p>Four episodes available now. The Omnibus contains three of them.<br>The Nightmaric Saga Special Episode: Syriana is out now!</p>
-    </div>
-
-    <div class="flip-grid fade-in">
- <div class="flip-card" tabindex="0">
-        <div class="flip-inner">
-          <div class="flip-front">
-            <img src="/image/fractured-girl.jpg" alt="The Nightmaric Saga Omnibus cover" />
-            <div class="flip-front-label">
-              <span class="flip-eyebrow">The Nightmaric Saga</span>
-              <span class="flip-title">Episode One : The Fractured Girl</span>
-            </div>
-            <div class="flip-hint">Hover to reveal ↻</div>
-          </div>
-          <div class="flip-back">
-            <div class="flip-back-content">
-              <span class="flip-eyebrow">Cassandra just wants to live a normal, boring, and uneventful life.</span>
-              <h3>The Nightmaric Saga<br><em> Episode One : The Fractured Girl</em></h3>
-              <p>Cassandra’s a broke college student who wanted a quiet morning. Instead, she gets a ship falling out of the sky, her best friend infected with something ancient and hungry, and a hospital full of people tearing into one another.
-</p>
-              <a class="btn flip-btn"
-                 href="https://a.co/d/03hdwcRx"
-                 target="_blank" rel="noopener noreferrer"
-                 onclick="fbq('trackCustom','ClickToAmazon');">
-                Read on Amazon
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-       <div class="flip-card" tabindex="0">
-        <div class="flip-inner">
-          <div class="flip-front">
-            <img src="/image/fractured-blonde.jpg" alt="The Nightmaric Saga Omnibus cover" />
-            <div class="flip-front-label">
-              <span class="flip-eyebrow">The Nightmaric Saga</span>
-              <span class="flip-title"> Episode Two : The Fractured Blonde</span>
-            </div>
-            <div class="flip-hint">Hover to reveal ↻</div>
-          </div>
-          <div class="flip-back">
-            <div class="flip-back-content">
-              <span class="flip-eyebrow"> The Blonde Woman makes her move</span>
-              <h3>The Nightmaric Saga<br><em>Episode Two : The Fractured Blonde</em></h3>
-              <p>Cassandra wakes under Shadow observation with gaps in her memory and fractures in her perception she can’t explain. She slips between locations without moving, rooms shift when she looks away, and entire events vanish from recorded reality. </p>
-              <a class="btn flip-btn"
-                 href="https://a.co/d/0hzLPEaw"
-                 target="_blank" rel="noopener noreferrer"
-                 onclick="fbq('trackCustom','ClickToAmazon');">
-                Read on Amazon
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-       <div class="flip-card" tabindex="0">
-        <div class="flip-inner">
-          <div class="flip-front">
-            <img src="/image/fractured-women.jpg" alt="The Nightmaric Saga Omnibus cover" />
-            <div class="flip-front-label">
-              <span class="flip-eyebrow">The Nightmaric Saga</span>
-              <span class="flip-title">Episode Three: The Fractured Women</span>
-            </div>
-            <div class="flip-hint">Hover to reveal ↻</div>
-          </div>
-          <div class="flip-back">
-            <div class="flip-back-content">
-              <span class="flip-eyebrow">Cassandra's and Persephone's world collide.</span>
-              <h3>The Nightmaric Saga<br><em>Episode Three : The Fractured Women</em></h3>
-              <p>Cassandra wages a desperate final stand against Persephone  while reality burns. In this explosive sci-fi thriller combining cosmic horror, dark humor, military chaos, apocalyptic stakes, shocking revelations, and a countdown to extinction.</p>
-              <a class="btn flip-btn"
-                 href="https://a.co/d/082eYdCa"
-                 target="_blank" rel="noopener noreferrer"
-                 onclick="fbq('trackCustom','ClickToAmazon');">
-                Read on Amazon
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-
-      <!-- Card 1: Omnibus -->
-      <div class="flip-card" tabindex="0">
-        <div class="flip-inner">
-          <div class="flip-front">
-            <img src="/image/persephone.jpg" alt="The Nightmaric Saga Omnibus cover" />
-            <div class="flip-front-label">
-              <span class="flip-eyebrow">The Nightmaric Saga</span>
-              <span class="flip-title">Omnibus</span>
-            </div>
-            <div class="flip-hint">Hover to reveal ↻</div>
-          </div>
-          <div class="flip-back">
-            <div class="flip-back-content">
-              <span class="flip-eyebrow">Three episodes. One volume.</span>
-              <h3>The Nightmaric Saga<br><em>Omnibus</em></h3>
-              <p>The complete first arc. Persephone awakens and reality begins to splinter. Reality will never be the same again.</p>
-              <a class="btn flip-btn"
-                 href="https://a.co/d/01n0cX11"
-                 target="_blank" rel="noopener noreferrer"
-                 onclick="fbq('trackCustom','ClickToAmazon');">
-                Read on Amazon
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 2: Syriana -->
-      <div class="flip-card" tabindex="0">
-        <div class="flip-inner">
-          <div class="flip-front">
-            <img src="/image/Syriana.jpg" alt="The Nightmaric Saga Special Episode: Syriana cover" />
-            <div class="flip-front-label">
-              <span class="flip-eyebrow">Special Episode</span>
-              <span class="flip-title">Syriana</span>
-            </div>
-            <div class="flip-hint">Hover to reveal ↻</div>
-          </div>
-          <div class="flip-back">
-            <div class="flip-back-content">
-              <span class="flip-eyebrow">A 17 year old and an exhausted super soldier stand against Persephone and her blood thirsty hordes.</span>
-              <h3>The Nightmaric Saga<br><em> Special Episode : Syriana</em></h3>
-              <p>An immortal soldier guards the last way out of a dying world while an eldritch god watches from the crowd, waiting to see who earns her attention.</p>
-              <a class="btn flip-btn"
-                 href="https://a.co/d/0fX3976V"
-                 target="_blank" rel="noopener noreferrer"
-                 onclick="fbq('trackCustom','ClickToAmazon');">
-                Read on Amazon
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
     <div class="scroll-hint"><span></span></div>
   </section>
-  <section class="email-band" id="signup">
-  <div class="email-band-inner fade-in">
-    <p class="section-label">Join the Saga</p>
-    <h2>Reality is unraveling.<br><em>Be first to witness it.</em></h2>
-    <p>New episodes, release dates, and dispatches from the Nightmaric universe — straight to your inbox. With signing up, you get the first three chapters free!</p>
-
-   <div class="form-embed">
-  <iframe
-    id="signupForm"
-    src="https://docs.google.com/forms/d/1FIeTCrKHfI6agoQvFyT31quLdj3hKmj1K4qSfhFXtp4/viewform?embedded=true"
-    width="100%"
-    height="780"
-    frameborder="0"
-    marginheight="0"
-    marginwidth="0"
-    title="Nightmaric Saga Email Signup"
-  >
-    Loading…
-  </iframe>
-</div>
-<div id="chapterReveal" style="display:none; margin-top:24px; text-align:center;">
-  <p style="margin-bottom:10px; font-weight:600;">
-    ✦ You're in.
-  </p>
-  <a href="/first-three-chapters.html" target="_blank"
-     style="display:inline-block; padding:14px 22px; background:#7b2fff; color:white; text-decoration:none; border-radius:6px;">
-     Read the First 3 Chapters
-  </a>
-</div>
-
-    <p class="privacy-note">No spam. Unsubscribe anytime.</p>
-  </div>
-</section>
-
 
   <!-- MARQUEE -->
   <div class="marquee-wrap">
@@ -1180,6 +1046,152 @@
     </div>
   </div>
 
+  <!-- FINAL CTA + FLIP CARDS (TOP) -->
+  <section class="final-cta">
+    <div class="final-cta-inner fade-in">
+      <h2>Reality has begun<br><em>to splinter</em></h2>
+      <p>Four episodes available now. The Omnibus contains three of them.<br>The Nightmaric Saga Special Episode: Syriana is out now!</p>
+    </div>
+
+    <div class="flip-grid fade-in">
+      <div class="flip-card" tabindex="0" role="button" aria-label="Episode One: The Fractured Girl">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <img src="/image/fractured-girl.jpg" alt="Episode One: The Fractured Girl" loading="lazy" />
+            <div class="flip-front-label">
+              <span class="flip-eyebrow">The Nightmaric Saga</span>
+              <span class="flip-title">Episode One : The Fractured Girl</span>
+            </div>
+            <div class="flip-hint">Tap to reveal ↻</div>
+          </div>
+          <div class="flip-back">
+            <div class="flip-back-content">
+              <span class="flip-eyebrow">Cassandra just wants to live a normal, boring, and uneventful life.</span>
+              <h3>The Nightmaric Saga<br><em>Episode One : The Fractured Girl</em></h3>
+              <p>Cassandra's a broke college student who wanted a quiet morning. Instead, she gets a ship falling out of the sky, her best friend infected with something ancient and hungry, and a hospital full of people tearing into one another.</p>
+              <a class="btn flip-btn" href="https://a.co/d/03hdwcRx" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" tabindex="0" role="button" aria-label="Episode Two: The Fractured Blonde">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <img src="/image/fractured-blonde.jpg" alt="Episode Two: The Fractured Blonde" loading="lazy" />
+            <div class="flip-front-label">
+              <span class="flip-eyebrow">The Nightmaric Saga</span>
+              <span class="flip-title">Episode Two : The Fractured Blonde</span>
+            </div>
+            <div class="flip-hint">Tap to reveal ↻</div>
+          </div>
+          <div class="flip-back">
+            <div class="flip-back-content">
+              <span class="flip-eyebrow">The Blonde Woman makes her move</span>
+              <h3>The Nightmaric Saga<br><em>Episode Two : The Fractured Blonde</em></h3>
+              <p>Cassandra wakes under Shadow observation with gaps in her memory and fractures in her perception she can't explain. She slips between locations without moving, rooms shift when she looks away, and entire events vanish from recorded reality.</p>
+              <a class="btn flip-btn" href="https://a.co/d/0hzLPEaw" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" tabindex="0" role="button" aria-label="Episode Three: The Fractured Women">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <img src="/image/fractured-women.jpg" alt="Episode Three: The Fractured Women" loading="lazy" />
+            <div class="flip-front-label">
+              <span class="flip-eyebrow">The Nightmaric Saga</span>
+              <span class="flip-title">Episode Three: The Fractured Women</span>
+            </div>
+            <div class="flip-hint">Tap to reveal ↻</div>
+          </div>
+          <div class="flip-back">
+            <div class="flip-back-content">
+              <span class="flip-eyebrow">Cassandra's and Persephone's world collide.</span>
+              <h3>The Nightmaric Saga<br><em>Episode Three : The Fractured Women</em></h3>
+              <p>Cassandra wages a desperate final stand against Persephone while reality burns. Combining cosmic horror, dark humor, military chaos, apocalyptic stakes, and a countdown to extinction.</p>
+              <a class="btn flip-btn" href="https://a.co/d/082eYdCa" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" tabindex="0" role="button" aria-label="The Nightmaric Saga Omnibus">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <img src="/image/persephone.jpg" alt="The Nightmaric Saga Omnibus" loading="lazy" />
+            <div class="flip-front-label">
+              <span class="flip-eyebrow">The Nightmaric Saga</span>
+              <span class="flip-title">Omnibus</span>
+            </div>
+            <div class="flip-hint">Tap to reveal ↻</div>
+          </div>
+          <div class="flip-back">
+            <div class="flip-back-content">
+              <span class="flip-eyebrow">Three episodes. One volume.</span>
+              <h3>The Nightmaric Saga<br><em>Omnibus</em></h3>
+              <p>The complete first arc. Persephone awakens and reality begins to splinter. Reality will never be the same again.</p>
+              <a class="btn flip-btn" href="https://a.co/d/01n0cX11" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" tabindex="0" role="button" aria-label="Special Episode: Syriana">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <img src="/image/Syriana.jpg" alt="The Nightmaric Saga Special Episode: Syriana" loading="lazy" />
+            <div class="flip-front-label">
+              <span class="flip-eyebrow">Special Episode</span>
+              <span class="flip-title">Syriana</span>
+            </div>
+            <div class="flip-hint">Tap to reveal ↻</div>
+          </div>
+          <div class="flip-back">
+            <div class="flip-back-content">
+              <span class="flip-eyebrow">A 17 year old and an exhausted super soldier stand against Persephone and her blood thirsty hordes.</span>
+              <h3>The Nightmaric Saga<br><em>Special Episode : Syriana</em></h3>
+              <p>An immortal soldier guards the last way out of a dying world while an eldritch god watches from the crowd, waiting to see who earns her attention.</p>
+              <a class="btn flip-btn" href="https://a.co/d/0fX3976V" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+   <section class="email-band" id="signup">
+    <div class="email-band-inner fade-in">
+      <p class="section-label">Join the Saga</p>
+      <h2>Reality is unraveling.<br><em>Be first to witness it.</em></h2>
+      <p>New episodes, release dates, and dispatches from the Nightmaric universe — straight to your inbox. Sign up and get the first three chapters free!</p>
+
+      <div class="form-embed">
+        <iframe
+          id="signupForm"
+          src="https://docs.google.com/forms/d/1FIeTCrKHfI6agoQvFyT31quLdj3hKmj1K4qSfhFXtp4/viewform?embedded=true"
+          width="100%"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0"
+          title="Nightmaric Saga Email Signup"
+        >
+          Loading…
+        </iframe>
+      </div>
+
+      <div id="chapterReveal" style="display:none; margin-top:24px; text-align:center;">
+        <p style="margin-bottom:10px; font-weight:600;">✦ You're in.</p>
+        <a href="/first-three-chapters.html" target="_blank"
+           style="display:inline-block; padding:14px 22px; background:#7b2fff; color:white; text-decoration:none; border-radius:6px; font-family:'Syne',sans-serif; font-size:12px; letter-spacing:0.1em; text-transform:uppercase;">
+          Read the First 3 Chapters
+        </a>
+      </div>
+
+      <p class="privacy-note">No spam. Unsubscribe anytime.</p>
+    </div>
+  </section>
+
   <!-- ESCALATION -->
   <section class="escalation" id="escalation">
     <p class="section-label fade-in">How it begins</p>
@@ -1190,7 +1202,7 @@
       <li>A hospital becomes a slaughterhouse.</li>
       <li>A cult rises worshipping a mysterious Blonde Woman.</li>
       <li>In a moment of emotional rage, Cassandra pushes the Blonde Woman's head into a tear of reality.</li>
-      <li>Cassandra's best friend and The Blonde Woman merge into one being.</li>
+      <li>Lillia and The Blonde Woman merge into one being.</li>
       <li>Lillia becomes her.</li>
       <li>Persephone is her.</li>
       <li>They are Persephone.</li>
@@ -1205,60 +1217,58 @@
         Start with the Omnibus
       </a>
     </div>
- 
 
-  <!-- PERSEPHONE -->
-  <section class="persephone">
-    <div class="persephone-inner">
+    <!-- PERSEPHONE -->
+    <section class="persephone" style="margin: 80px -24px -80px; padding: 80px 24px;">
+      <div class="persephone-inner">
+        <div class="persephone-text fade-in">
+          <span class="label">Persephone enjoys watching reality tear itself apart around her</span>
+          <h2>Persephone could end this reality with relative ease.<br>She'd rather have her minions tear it apart for her.</h2>
+          <p>Persephone basks in the chaos and <strong>treats the developing madness like it's a Tuesday afternoon</strong>. She does all but nothing, as reality does everything it can to resist her will.</p>
+          <p>It's her world after all. <strong>Reality is forced to survive it.</strong></p>
+        </div>
 
-      <div class="persephone-text fade-in">
-        <span class="label">Persephone enjoys watching reality tear itself apart around her</span>
-        <h2>Persephone could end this reality with relative ease.<br>She'd rather have her minions tear it apart for her.</h2>
-        <p>Persephone basks in the chaos and <strong>treats the developing madness like it's a Tuesday afternoon</strong>. She does all but nothing, as reality does everything it can to resist her will.</p>
-        <p>It's her world after all. <strong>Reality is forced to survive it.</strong></p>
+        <div class="quote-block fade-in">
+          <p class="quote-text">"Persephone is terrifying in the quietest way."</p>
+          <span class="quote-attr">— Amazon Reviewer</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOCIAL PROOF -->
+    <section class="proof" style="margin: 0 -24px; padding: 80px 24px;">
+      <p class="section-label fade-in">Readers don't forget her.</p>
+
+      <div class="proof-stats fade-in">
+        <div class="stat">
+          <span class="stat-number">Top 30</span>
+          <span class="stat-label">Cosmic Horror</span>
+          <div class="stat-accent"></div>
+        </div>
+        <div class="stat">
+          <span class="stat-number">4.8★</span>
+          <span class="stat-label">Amazon Rating</span>
+          <div class="stat-accent"></div>
+        </div>
+        <div class="stat">
+          <span class="stat-number">4</span>
+          <span class="stat-label">Episodes Published</span>
+          <div class="stat-accent"></div>
+        </div>
       </div>
 
-      <div class="quote-block fade-in">
-        <p class="quote-text">"Persephone is terrifying in the quietest way."</p>
-        <span class="quote-attr">— Amazon Reviewer</span>
+      <div style="margin-top: 60px;" class="fade-in">
+        <a class="btn"
+           href="https://www.amazon.com/stores/Shawn-Carter/author/B0GG64JNSB?ref=ap_rdr&shoppingPortalEnabled=true"
+           target="_blank" rel="noopener noreferrer"
+           onclick="fbq('trackCustom','ClickToAmazon');">
+          Enter the Nightmaric Saga
+        </a>
       </div>
-
-    </div>
+    </section>
   </section>
 
-  <!-- SOCIAL PROOF -->
-  <section class="proof">
-    <p class="section-label fade-in">Readers don't forget her.</p>
-
-    <div class="proof-stats fade-in">
-      <div class="stat">
-        <span class="stat-number">Top 30</span>
-        <span class="stat-label">Cosmic Horror</span>
-        <div class="stat-accent"></div>
-      </div>
-      <div class="stat">
-        <span class="stat-number">4.8★</span>
-        <span class="stat-label">Amazon Rating</span>
-        <div class="stat-accent"></div>
-      </div>
-      <div class="stat">
-        <span class="stat-number">4</span>
-        <span class="stat-label">Episodes Published</span>
-        <div class="stat-accent"></div>
-      </div>
-    </div>
-
-    <div style="margin-top: 60px;" class="fade-in">
-      <a class="btn"
-         href="https://www.amazon.com/stores/Shawn-Carter/author/B0GG64JNSB?ref=ap_rdr&shoppingPortalEnabled=true"
-         target="_blank" rel="noopener noreferrer"
-         onclick="fbq('trackCustom','ClickToAmazon');">
-        Enter the Nightmaric Saga
-      </a>
-    </div>
-  </section>
-   </section>
-   <!-- FINAL CTA + FLIP CARDS -->
+  <!-- FINAL CTA + FLIP CARDS -->
   <section class="final-cta">
     <div class="final-cta-inner fade-in">
       <h2>Reality has begun<br><em>to splinter</em></h2>
@@ -1266,22 +1276,21 @@
     </div>
 
     <div class="flip-grid fade-in">
- <div class="flip-card" tabindex="0">
+      <div class="flip-card" tabindex="0" role="button" aria-label="Episode One: The Fractured Girl">
         <div class="flip-inner">
           <div class="flip-front">
-            <img src="/image/fractured-girl.jpg" alt="The Nightmaric Saga Omnibus cover" />
+            <img src="/image/fractured-girl.jpg" alt="Episode One: The Fractured Girl" loading="lazy" />
             <div class="flip-front-label">
               <span class="flip-eyebrow">The Nightmaric Saga</span>
               <span class="flip-title">Episode One : The Fractured Girl</span>
             </div>
-            <div class="flip-hint">Hover to reveal ↻</div>
+            <div class="flip-hint">Tap to reveal ↻</div>
           </div>
           <div class="flip-back">
             <div class="flip-back-content">
               <span class="flip-eyebrow">Cassandra just wants to live a normal, boring, and uneventful life.</span>
-              <h3>The Nightmaric Saga<br><em> Episode One : The Fractured Girl</em></h3>
-              <p>Cassandra’s a broke college student who wanted a quiet morning. Instead, she gets a ship falling out of the sky, her best friend infected with something ancient and hungry, and a hospital full of people tearing into one another.
-</p>
+              <h3>The Nightmaric Saga<br><em>Episode One : The Fractured Girl</em></h3>
+              <p>Cassandra's a broke college student who wanted a quiet morning. Instead, she gets a ship falling out of the sky, her best friend infected with something ancient and hungry, and a hospital full of people tearing into one another.</p>
               <a class="btn flip-btn"
                  href="https://a.co/d/03hdwcRx"
                  target="_blank" rel="noopener noreferrer"
@@ -1292,21 +1301,22 @@
           </div>
         </div>
       </div>
-       <div class="flip-card" tabindex="0">
+
+      <div class="flip-card" tabindex="0" role="button" aria-label="Episode Two: The Fractured Blonde">
         <div class="flip-inner">
           <div class="flip-front">
-            <img src="/image/fractured-blonde.jpg" alt="The Nightmaric Saga Omnibus cover" />
+            <img src="/image/fractured-blonde.jpg" alt="Episode Two: The Fractured Blonde" loading="lazy" />
             <div class="flip-front-label">
               <span class="flip-eyebrow">The Nightmaric Saga</span>
-              <span class="flip-title"> Episode Two : The Fractured Blonde</span>
+              <span class="flip-title">Episode Two : The Fractured Blonde</span>
             </div>
-            <div class="flip-hint">Hover to reveal ↻</div>
+            <div class="flip-hint">Tap to reveal ↻</div>
           </div>
           <div class="flip-back">
             <div class="flip-back-content">
-              <span class="flip-eyebrow"> The Blonde Woman makes her move</span>
+              <span class="flip-eyebrow">The Blonde Woman makes her move</span>
               <h3>The Nightmaric Saga<br><em>Episode Two : The Fractured Blonde</em></h3>
-              <p>Cassandra wakes under Shadow observation with gaps in her memory and fractures in her perception she can’t explain. She slips between locations without moving, rooms shift when she looks away, and entire events vanish from recorded reality. </p>
+              <p>Cassandra wakes under Shadow observation with gaps in her memory and fractures in her perception she can't explain. She slips between locations without moving, rooms shift when she looks away, and entire events vanish from recorded reality.</p>
               <a class="btn flip-btn"
                  href="https://a.co/d/0hzLPEaw"
                  target="_blank" rel="noopener noreferrer"
@@ -1317,21 +1327,22 @@
           </div>
         </div>
       </div>
-       <div class="flip-card" tabindex="0">
+
+      <div class="flip-card" tabindex="0" role="button" aria-label="Episode Three: The Fractured Women">
         <div class="flip-inner">
           <div class="flip-front">
-            <img src="/image/fractured-women.jpg" alt="The Nightmaric Saga Omnibus cover" />
+            <img src="/image/fractured-women.jpg" alt="Episode Three: The Fractured Women" loading="lazy" />
             <div class="flip-front-label">
               <span class="flip-eyebrow">The Nightmaric Saga</span>
               <span class="flip-title">Episode Three: The Fractured Women</span>
             </div>
-            <div class="flip-hint">Hover to reveal ↻</div>
+            <div class="flip-hint">Tap to reveal ↻</div>
           </div>
           <div class="flip-back">
             <div class="flip-back-content">
               <span class="flip-eyebrow">Cassandra's and Persephone's world collide.</span>
               <h3>The Nightmaric Saga<br><em>Episode Three : The Fractured Women</em></h3>
-              <p>Cassandra wages a desperate final stand against Persephone  while reality burns. In this explosive sci-fi thriller combining cosmic horror, dark humor, military chaos, apocalyptic stakes, shocking revelations, and a countdown to extinction.</p>
+              <p>Cassandra wages a desperate final stand against Persephone while reality burns. Combining cosmic horror, dark humor, military chaos, apocalyptic stakes, and a countdown to extinction.</p>
               <a class="btn flip-btn"
                  href="https://a.co/d/082eYdCa"
                  target="_blank" rel="noopener noreferrer"
@@ -1342,18 +1353,16 @@
           </div>
         </div>
       </div>
-      
 
-      <!-- Card 1: Omnibus -->
-      <div class="flip-card" tabindex="0">
+      <div class="flip-card" tabindex="0" role="button" aria-label="The Nightmaric Saga Omnibus">
         <div class="flip-inner">
           <div class="flip-front">
-            <img src="/image/persephone.jpg" alt="The Nightmaric Saga Omnibus cover" />
+            <img src="/image/persephone.jpg" alt="The Nightmaric Saga Omnibus" loading="lazy" />
             <div class="flip-front-label">
               <span class="flip-eyebrow">The Nightmaric Saga</span>
               <span class="flip-title">Omnibus</span>
             </div>
-            <div class="flip-hint">Hover to reveal ↻</div>
+            <div class="flip-hint">Tap to reveal ↻</div>
           </div>
           <div class="flip-back">
             <div class="flip-back-content">
@@ -1371,21 +1380,20 @@
         </div>
       </div>
 
-      <!-- Card 2: Syriana -->
-      <div class="flip-card" tabindex="0">
+      <div class="flip-card" tabindex="0" role="button" aria-label="Special Episode: Syriana">
         <div class="flip-inner">
           <div class="flip-front">
-            <img src="/image/Syriana.jpg" alt="The Nightmaric Saga Special Episode: Syriana cover" />
+            <img src="/image/Syriana.jpg" alt="The Nightmaric Saga Special Episode: Syriana" loading="lazy" />
             <div class="flip-front-label">
               <span class="flip-eyebrow">Special Episode</span>
               <span class="flip-title">Syriana</span>
             </div>
-            <div class="flip-hint">Hover to reveal ↻</div>
+            <div class="flip-hint">Tap to reveal ↻</div>
           </div>
           <div class="flip-back">
             <div class="flip-back-content">
               <span class="flip-eyebrow">A 17 year old and an exhausted super soldier stand against Persephone and her blood thirsty hordes.</span>
-              <h3>The Nightmaric Saga<br><em> Special Episode : Syriana</em></h3>
+              <h3>The Nightmaric Saga<br><em>Special Episode : Syriana</em></h3>
               <p>An immortal soldier guards the last way out of a dying world while an eldritch god watches from the crowd, waiting to see who earns her attention.</p>
               <a class="btn flip-btn"
                  href="https://a.co/d/0fX3976V"
@@ -1397,52 +1405,55 @@
           </div>
         </div>
       </div>
-
     </div>
   </section>
-  
 
   <!-- EMAIL CAPTURE BAND -->
-  <!-- EMAIL CAPTURE BAND (Google Form Embed) -->
-<section class="email-band" id="signup">
-  <div class="email-band-inner fade-in">
-    <p class="section-label">Join the Saga</p>
-    <h2>Reality is unraveling.<br><em>Be first to witness it.</em></h2>
-    <p>New episodes, release dates, and dispatches from the Nightmaric universe — straight to your inbox. With signing up, you get the first three chapters free!</p>
+  <section class="email-band" id="signup">
+    <div class="email-band-inner fade-in">
+      <p class="section-label">Join the Saga</p>
+      <h2>Reality is unraveling.<br><em>Be first to witness it.</em></h2>
+      <p>New episodes, release dates, and dispatches from the Nightmaric universe — straight to your inbox. Sign up and get the first three chapters free!</p>
 
-   <div class="form-embed">
-  <iframe
-    id="signupForm"
-    src="https://docs.google.com/forms/d/1FIeTCrKHfI6agoQvFyT31quLdj3hKmj1K4qSfhFXtp4/viewform?embedded=true"
-    width="100%"
-    height="780"
-    frameborder="0"
-    marginheight="0"
-    marginwidth="0"
-    title="Nightmaric Saga Email Signup"
-  >
-    Loading…
-  </iframe>
-</div>
-<div id="chapterReveal" style="display:none; margin-top:24px; text-align:center;">
-  <p style="margin-bottom:10px; font-weight:600;">
-    ✦ You're in.
-  </p>
-  <a href="/first-three-chapters.html" target="_blank"
-     style="display:inline-block; padding:14px 22px; background:#7b2fff; color:white; text-decoration:none; border-radius:6px;">
-     Read the First 3 Chapters
-  </a>
-</div>
+      <div class="form-embed">
+        <iframe
+          id="signupForm"
+          src="https://docs.google.com/forms/d/1FIeTCrKHfI6agoQvFyT31quLdj3hKmj1K4qSfhFXtp4/viewform?embedded=true"
+          width="100%"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0"
+          title="Nightmaric Saga Email Signup"
+        >
+          Loading…
+        </iframe>
+      </div>
 
-    <p class="privacy-note">No spam. Unsubscribe anytime.</p>
+      <div id="chapterReveal" style="display:none; margin-top:24px; text-align:center;">
+        <p style="margin-bottom:10px; font-weight:600;">✦ You're in.</p>
+        <a href="/first-three-chapters.html" target="_blank"
+           style="display:inline-block; padding:14px 22px; background:#7b2fff; color:white; text-decoration:none; border-radius:6px; font-family:'Syne',sans-serif; font-size:12px; letter-spacing:0.1em; text-transform:uppercase;">
+          Read the First 3 Chapters
+        </a>
+      </div>
+
+      <p class="privacy-note">No spam. Unsubscribe anytime.</p>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span class="marquee-item">Cosmic Horror <span>✦</span></span>
+      <span class="marquee-item">Ranked Top 30 in Cosmic Horror on Amazon <span>✦</span></span>
+      <span class="marquee-item">The Nightmaric Saga <span>✦</span></span>
+      <span class="marquee-item">All Roads Lead to Persephone <span>✦</span></span>
+      <span class="marquee-item">Cosmic Horror <span>✦</span></span>
+      <span class="marquee-item">Ranked Top 30 in Cosmic Horror on Amazon <span>✦</span></span>
+      <span class="marquee-item">The Nightmaric Saga <span>✦</span></span>
+      <span class="marquee-item">All Roads Lead to Persephone <span>✦</span></span>
+    </div>
   </div>
-</section>
-
-
-<!-- Hidden chapter link -->
-
-
- 
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -1451,27 +1462,25 @@
 
   <script>
 document.addEventListener("DOMContentLoaded", () => {
-  // ✅ Google Form endpoint (REPLACE FORM_ID_HERE)
   const FORM_ACTION_URL = "https://docs.google.com/forms/d/e/1FAIpQLScWtXVyGLkr0AGRcFmlC7cc9J4z9MzN2Ink-oNAwy8NWDOskQ/viewform?usp=dialog";
-
-  // ✅ Your Google Form entry IDs (REPLACE these)
-  // Example format: 'entry.1234567890'
   const ENTRY_NAME  = "entry.XXXXXXXXXX";
   const ENTRY_EMAIL = "entry.XXXXXXXXXX";
 
-  // Year (guarded)
+  // Year
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  // Custom cursor (guarded)
+  // Custom cursor — only on non-touch devices
   const dot = document.getElementById("cursorDot");
-  if (dot) {
+  if (dot && window.matchMedia("(hover: hover)").matches) {
     document.addEventListener("mousemove", e => {
       dot.style.left = e.clientX + "px";
       dot.style.top  = e.clientY + "px";
     });
     document.addEventListener("mouseleave", () => dot.style.opacity = "0");
     document.addEventListener("mouseenter", () => dot.style.opacity = "1");
+  } else if (dot) {
+    dot.style.display = "none";
   }
 
   // Intersection Observer for fade-ins
@@ -1482,16 +1491,21 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => entry.target.classList.add("visible"), delay);
       }
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.1 });
 
   document.querySelectorAll(".fade-in").forEach((el, i) => {
     el.dataset.delay = i * 80;
     observer.observe(el);
   });
 
-  // Flip card click toggle
+  // Flip card — tap on mobile, click on desktop
   document.querySelectorAll(".flip-card").forEach(card => {
-    card.addEventListener("click", () => card.classList.toggle("flipped"));
+    // Handle both click (desktop) and touch (mobile)
+    card.addEventListener("click", (e) => {
+      // If clicking the Amazon button inside, don't toggle
+      if (e.target.closest('a')) return;
+      card.classList.toggle("flipped");
+    });
     card.addEventListener("keydown", e => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
@@ -1500,142 +1514,30 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Escalation list hover highlight
-  document.querySelectorAll(".escalation-list li").forEach(li => {
-    li.addEventListener("mouseenter", () => {
-      document.querySelectorAll(".escalation-list li").forEach(other => {
-        other.style.color = "rgba(232,228,220,0.2)";
+  // Escalation list hover — only on non-touch devices
+  if (window.matchMedia("(hover: hover)").matches) {
+    document.querySelectorAll(".escalation-list li").forEach(li => {
+      li.addEventListener("mouseenter", () => {
+        document.querySelectorAll(".escalation-list li").forEach(other => {
+          other.style.color = "rgba(232,228,220,0.2)";
+        });
+        li.style.color = "rgba(232,228,220,1)";
       });
-      li.style.color = "rgba(232,228,220,1)";
-    });
-    li.addEventListener("mouseleave", () => {
-      document.querySelectorAll(".escalation-list li").forEach(other => {
-        other.style.color = "";
+      li.addEventListener("mouseleave", () => {
+        document.querySelectorAll(".escalation-list li").forEach(other => {
+          other.style.color = "";
+        });
       });
-    });
-  });
-
-  // ── EMAIL CAPTURE ──
-  window.openEmailModal = function openEmailModal() {
-    const band = document.querySelector(".email-band");
-    if (band) band.scrollIntoView({ behavior: "smooth" });
-    setTimeout(() => document.getElementById("emailName")?.focus(), 600);
-  };
-
-  window.submitEmail = function submitEmail() {
-    const nameEl  = document.getElementById("emailName");
-    const emailEl = document.getElementById("emailAddress");
-    const btn     = document.getElementById("emailSubmitBtn");
-    const label   = document.getElementById("emailSubmitLabel");
-    const msgEl   = document.getElementById("formMessage");
-
-    if (!nameEl || !emailEl || !btn || !label || !msgEl) {
-      console.warn("Missing one of: #emailName #emailAddress #emailSubmitBtn #emailSubmitLabel #formMessage");
-      return;
-    }
-
-    const name  = nameEl.value.trim();
-    const email = emailEl.value.trim();
-
-    // Reset message
-    msgEl.className = "form-message";
-    msgEl.style.display = "none";
-    msgEl.textContent = "";
-
-    // Validate
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      msgEl.textContent = "Please enter a valid email address.";
-      msgEl.className = "form-message error";
-      msgEl.style.display = "block";
-      emailEl.focus();
-      return;
-    }
-
-    // Loading state
-    btn.disabled = true;
-    label.textContent = "Sending...";
-
-    // Meta Pixel lead (safe)
-    if (typeof fbq !== "undefined") fbq("track", "Lead");
-
-    try {
-      // ✅ Hidden iframe target (CORS-safe + works on iPhone Safari)
-      let iframe = document.getElementById("hiddenFormTarget");
-      if (!iframe) {
-        iframe = document.createElement("iframe");
-        iframe.name = "hiddenFormTarget";
-        iframe.id = "hiddenFormTarget";
-        iframe.style.display = "none";
-        document.body.appendChild(iframe);
-      }
-
-      // Create hidden form
-      const form = document.createElement("form");
-      form.action = FORM_ACTION_URL;
-      form.method = "POST";
-      form.target = "hiddenFormTarget";
-
-      // Name
-      const nameInput = document.createElement("input");
-      nameInput.type = "hidden";
-      nameInput.name = ENTRY_NAME;
-      nameInput.value = name;
-      form.appendChild(nameInput);
-
-      // Email
-      const emailInput = document.createElement("input");
-      emailInput.type = "hidden";
-      emailInput.name = ENTRY_EMAIL;
-      emailInput.value = email;
-      form.appendChild(emailInput);
-
-      // (Optional) Google Forms param
-      const fvv = document.createElement("input");
-      fvv.type = "hidden";
-      fvv.name = "fvv";
-      fvv.value = "1";
-      form.appendChild(fvv);
-
-      document.body.appendChild(form);
-      form.submit();
-      document.body.removeChild(form);
-
-      // Success UI (we can't read response; assume success)
-      btn.disabled = false;
-      label.textContent = "Join the List";
-      nameEl.value = "";
-      emailEl.value = "";
-
-      msgEl.textContent = "✦ You're in. Reality will never be the same.";
-      msgEl.className = "form-message success";
-      msgEl.style.display = "block";
-
-      // ✅ Reveal your chapter link section right after submit
-      const reveal = document.getElementById("chapterReveal");
-      if (reveal) {
-        reveal.style.display = "block";
-        reveal.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-
-    } catch (err) {
-      btn.disabled = false;
-      label.textContent = "Join the List";
-      msgEl.textContent = "Signup failed: " + (err?.message || "Unknown error");
-      msgEl.className = "form-message error";
-      msgEl.style.display = "block";
-    }
-  };
-
-  // Allow Enter key to submit from email field (guarded)
-  const emailField = document.getElementById("emailAddress");
-  if (emailField) {
-    emailField.addEventListener("keydown", e => {
-      if (e.key === "Enter") window.submitEmail();
     });
   }
 
-  // ── OPTIONAL: If you're also embedding a Google Form in an iframe ──
-  // Use "second load reveals" (works; no cross-origin reads)
+  // Scroll to signup
+  window.openEmailModal = function() {
+    const band = document.querySelector(".email-band");
+    if (band) band.scrollIntoView({ behavior: "smooth" });
+  };
+
+  // Google Form iframe "second load = submitted" reveal
   const signupIframe = document.getElementById("signupForm");
   const reveal = document.getElementById("chapterReveal");
 
@@ -1649,7 +1551,23 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+  // Adjust iframe height based on screen width
+  function adjustFormHeight() {
+    const iframe = document.getElementById("signupForm");
+    if (!iframe) return;
+    if (window.innerWidth <= 480) {
+      iframe.style.height = "1000px";
+    } else if (window.innerWidth <= 700) {
+      iframe.style.height = "900px";
+    } else {
+      iframe.style.height = "780px";
+    }
+  }
+
+  adjustFormHeight();
+  window.addEventListener("resize", adjustFormHeight);
 });
-</script>
+  </script>
 </body>
 </html>
