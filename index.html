@@ -1204,119 +1204,85 @@
 
   <script>
     // ── REPLACE THIS with your Apps Script Web App URL ──
-    const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxZr4ifkBN_6CAFKOSw-7w4STKGBsUMGIY15_U7ggeMGzVkEheOirDKWRX1Frhh2xj4/exec';
+   // ✅ Use the SAME URL as your deployed web app (the one you tested in browser)
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzwCKFgUutzP_A2kKyebOfODvtsWycA53XI1PJf8fam19C6D6fXf3Eem1wjW4Q5GLxC/exec';
 
-    // Year
-    document.getElementById("year").textContent = new Date().getFullYear();
+// ── EMAIL CAPTURE ──
+function openEmailModal() {
+  document.querySelector('.email-band').scrollIntoView({ behavior: 'smooth' });
+  setTimeout(() => document.getElementById('emailName').focus(), 600);
+}
 
-    // Custom cursor
-    const dot = document.getElementById('cursorDot');
-    document.addEventListener('mousemove', e => {
-      dot.style.left = e.clientX + 'px';
-      dot.style.top = e.clientY + 'px';
-    });
-    document.addEventListener('mouseleave', () => dot.style.opacity = '0');
-    document.addEventListener('mouseenter', () => dot.style.opacity = '1');
+async function submitEmail() {
+  const nameEl  = document.getElementById('emailName');
+  const emailEl = document.getElementById('emailAddress');
+  const btn     = document.getElementById('emailSubmitBtn');
+  const label   = document.getElementById('emailSubmitLabel');
+  const msgEl   = document.getElementById('formMessage');
 
-    // Intersection Observer for fade-ins
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const delay = entry.target.dataset.delay || 0;
-          setTimeout(() => entry.target.classList.add('visible'), delay);
-        }
-      });
-    }, { threshold: 0.15 });
+  const name  = nameEl.value.trim();
+  const email = emailEl.value.trim();
 
-    document.querySelectorAll('.fade-in').forEach((el, i) => {
-      el.dataset.delay = i * 80;
-      observer.observe(el);
-    });
+  // Reset message
+  msgEl.className = 'form-message';
+  msgEl.style.display = 'none';
+  msgEl.textContent = '';
 
-    // Flip card click toggle
-    document.querySelectorAll('.flip-card').forEach(card => {
-      card.addEventListener('click', () => card.classList.toggle('flipped'));
-      card.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          card.classList.toggle('flipped');
-        }
-      });
-    });
+  // Validate
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    msgEl.textContent = 'Please enter a valid email address.';
+    msgEl.className = 'form-message error';
+    msgEl.style.display = 'block';
+    emailEl.focus();
+    return;
+  }
 
-    // Escalation list hover highlight
-    document.querySelectorAll('.escalation-list li').forEach(li => {
-      li.addEventListener('mouseenter', () => {
-        document.querySelectorAll('.escalation-list li').forEach(other => {
-          other.style.color = 'rgba(232,228,220,0.2)';
-        });
-        li.style.color = 'rgba(232,228,220,1)';
-      });
-      li.addEventListener('mouseleave', () => {
-        document.querySelectorAll('.escalation-list li').forEach(other => {
-          other.style.color = '';
-        });
-      });
-    });
+  // Loading state
+  btn.disabled = true;
+  label.textContent = 'Sending...';
 
-    // ── EMAIL CAPTURE ──
-    function openEmailModal() {
-      // Smooth scroll to the email band section
-      document.querySelector('.email-band').scrollIntoView({ behavior: 'smooth' });
-      setTimeout(() => document.getElementById('emailName').focus(), 600);
+  // Meta Pixel lead
+  if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+
+  try {
+    // cache-buster prevents browser caching GET requests
+    const url = SHEET_URL + '?' + new URLSearchParams({
+      name,
+      email,
+      cb: Date.now().toString()
+    }).toString();
+
+    const res = await fetch(url, { method: 'GET', cache: 'no-store' });
+
+    // If Google returns HTML for some reason, .json() would throw; that's good (we'll catch)
+    const data = await res.json();
+
+    if (data.result !== 'success') {
+      throw new Error(data.message || 'Unknown error');
     }
 
-    function submitEmail() {
-      const nameEl  = document.getElementById('emailName');
-      const emailEl = document.getElementById('emailAddress');
-      const btn     = document.getElementById('emailSubmitBtn');
-      const label   = document.getElementById('emailSubmitLabel');
-      const msgEl   = document.getElementById('formMessage');
+    // Success UI
+    btn.disabled = false;
+    label.textContent = 'Join the List';
+    nameEl.value = '';
+    emailEl.value = '';
+    msgEl.textContent = '✦ You\'re in. Reality will never be the same.';
+    msgEl.className = 'form-message success';
+    msgEl.style.display = 'block';
 
-      const name  = nameEl.value.trim();
-      const email = emailEl.value.trim();
+  } catch (err) {
+    btn.disabled = false;
+    label.textContent = 'Join the List';
+    msgEl.textContent = 'Signup failed: ' + (err?.message || 'Unknown error');
+    msgEl.className = 'form-message error';
+    msgEl.style.display = 'block';
+  }
+}
 
-      // Reset message
-      msgEl.className = 'form-message';
-      msgEl.style.display = 'none';
-
-      // Validate
-      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        msgEl.textContent = 'Please enter a valid email address.';
-        msgEl.className = 'form-message error';
-        emailEl.focus();
-        return;
-      }
-
-      // Loading state
-      btn.disabled = true;
-      label.textContent = 'Sending...';
-
-      // Fire Meta Pixel lead event
-      if (typeof fbq !== 'undefined') fbq('track', 'Lead');
-
-      // Build the Apps Script URL with query params
-      // (GET request via an Image ping — bypasses CORS entirely)
-      const params = new URLSearchParams({ name, email });
-      const ping = new Image();
-      ping.onload = () => onSuccess();
-      ping.onerror = () => onSuccess(); // Apps Script returns non-image, triggers onerror — that's fine
-      ping.src = SHEET_URL + '?' + params.toString();
-
-      function onSuccess() {
-        btn.disabled = false;
-        label.textContent = 'Join the List';
-        nameEl.value = '';
-        emailEl.value = '';
-        msgEl.textContent = '✦ You\'re in. Reality will never be the same.';
-        msgEl.className = 'form-message success';
-      }
-    }
-
-    // Allow Enter key to submit from email field
-    document.getElementById('emailAddress').addEventListener('keydown', e => {
-      if (e.key === 'Enter') submitEmail();
-    });
+// Allow Enter key to submit from email field
+document.getElementById('emailAddress').addEventListener('keydown', e => {
+  if (e.key === 'Enter') submitEmail();
+});
   </script>
 
 </body>
