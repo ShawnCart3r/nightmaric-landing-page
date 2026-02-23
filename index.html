@@ -1095,7 +1095,42 @@
       </a>
     </div>
   </section>
-   <!-- FINAL CTA + FLIP CARDS -->
+
+  <!-- EMAIL CAPTURE BAND -->
+  <section class="email-band">
+    <div class="email-band-inner fade-in">
+      <p class="section-label">Join the Saga</p>
+      <h2>Reality is unraveling.<br><em>Be first to witness it.</em></h2>
+      <p>New episodes, release dates, and dispatches from the Nightmaric universe — straight to your inbox.</p>
+
+      <div class="email-form" id="emailForm">
+        <div class="email-form-row">
+          <input
+            class="email-input"
+            type="text"
+            id="emailName"
+            placeholder="Your name"
+            autocomplete="given-name"
+          />
+          <input
+            class="email-input"
+            type="email"
+            id="emailAddress"
+            placeholder="Your email"
+            autocomplete="email"
+            required
+          />
+        </div>
+        <button class="email-submit" id="emailSubmitBtn" onclick="submitEmail()">
+          <span id="emailSubmitLabel">Join the List</span>
+        </button>
+        <div class="form-message" id="formMessage"></div>
+        <p class="privacy-note">No spam. Unsubscribe anytime.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA + FLIP CARDS -->
   <section class="final-cta">
 
     <div class="final-cta-inner fade-in">
@@ -1162,42 +1197,6 @@
     </div>
   </section>
 
-
-  <!-- EMAIL CAPTURE BAND -->
-  <section class="email-band">
-    <div class="email-band-inner fade-in">
-      <p class="section-label">Join the Saga</p>
-      <h2>Reality is unraveling.<br><em>Be first to witness it.</em></h2>
-      <p>New episodes, release dates, and dispatches from the Nightmaric universe — straight to your inbox.</p>
-
-      <div class="email-form" id="emailForm">
-        <div class="email-form-row">
-          <input
-            class="email-input"
-            type="text"
-            id="emailName"
-            placeholder="Your name"
-            autocomplete="given-name"
-          />
-          <input
-            class="email-input"
-            type="email"
-            id="emailAddress"
-            placeholder="Your email"
-            autocomplete="email"
-            required
-          />
-        </div>
-        <button class="email-submit" id="emailSubmitBtn" onclick="submitEmail()">
-          <span id="emailSubmitLabel">Join the List</span>
-        </button>
-        <div class="form-message" id="formMessage"></div>
-        <p class="privacy-note">No spam. Unsubscribe anytime.</p>
-      </div>
-    </div>
-  </section>
-
- 
   <!-- FOOTER -->
   <footer class="footer">
     <p>© <span id="year"></span> Shawn Carter — The Nightmaric Saga</p>
@@ -1205,7 +1204,7 @@
 
   <script>
     // ── REPLACE THIS with your Apps Script Web App URL ──
-    const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyLG4Y8DSrYdRmSAWrp-39J4L8vQ3fvCwWNKiAXIgtm2WXdBeaSaLR1D6P0MfQcyW9blw/exec';
+    const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxZr4ifkBN_6CAFKOSw-7w4STKGBsUMGIY15_U7ggeMGzVkEheOirDKWRX1Frhh2xj4/exec';
 
     // Year
     document.getElementById("year").textContent = new Date().getFullYear();
@@ -1267,20 +1266,21 @@
       setTimeout(() => document.getElementById('emailName').focus(), 600);
     }
 
-    async function submitEmail() {
-      const nameEl    = document.getElementById('emailName');
-      const emailEl   = document.getElementById('emailAddress');
-      const btn       = document.getElementById('emailSubmitBtn');
-      const label     = document.getElementById('emailSubmitLabel');
-      const msgEl     = document.getElementById('formMessage');
+    function submitEmail() {
+      const nameEl  = document.getElementById('emailName');
+      const emailEl = document.getElementById('emailAddress');
+      const btn     = document.getElementById('emailSubmitBtn');
+      const label   = document.getElementById('emailSubmitLabel');
+      const msgEl   = document.getElementById('formMessage');
 
       const name  = nameEl.value.trim();
       const email = emailEl.value.trim();
 
-      // Basic validation
+      // Reset message
       msgEl.className = 'form-message';
       msgEl.style.display = 'none';
 
+      // Validate
       if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         msgEl.textContent = 'Please enter a valid email address.';
         msgEl.className = 'form-message error';
@@ -1295,27 +1295,21 @@
       // Fire Meta Pixel lead event
       if (typeof fbq !== 'undefined') fbq('track', 'Lead');
 
-      try {
-        await fetch(SHEET_URL, {
-          method: 'POST',
-          mode: 'no-cors', // Apps Script requires no-cors
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email })
-        });
+      // Build the Apps Script URL with query params
+      // (GET request via an Image ping — bypasses CORS entirely)
+      const params = new URLSearchParams({ name, email });
+      const ping = new Image();
+      ping.onload = () => onSuccess();
+      ping.onerror = () => onSuccess(); // Apps Script returns non-image, triggers onerror — that's fine
+      ping.src = SHEET_URL + '?' + params.toString();
 
-        // no-cors means we can't read the response — assume success
-        label.textContent = 'Join the List';
+      function onSuccess() {
         btn.disabled = false;
+        label.textContent = 'Join the List';
         nameEl.value = '';
         emailEl.value = '';
         msgEl.textContent = '✦ You\'re in. Reality will never be the same.';
         msgEl.className = 'form-message success';
-
-      } catch (err) {
-        label.textContent = 'Join the List';
-        btn.disabled = false;
-        msgEl.textContent = 'Something went wrong. Try again or email directly.';
-        msgEl.className = 'form-message error';
       }
     }
 
