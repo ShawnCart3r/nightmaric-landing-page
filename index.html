@@ -1160,37 +1160,6 @@
       </div>
     </div>
   </section>
-   <section class="email-band" id="signup">
-    <div class="email-band-inner fade-in">
-      <p class="section-label">Join the Saga</p>
-      <h2>Reality is unraveling.<br><em>Be first to witness it.</em></h2>
-      <p>New episodes, release dates, and dispatches from the Nightmaric universe — straight to your inbox. Sign up and get the first three chapters free!</p>
-
-      <div class="form-embed">
-        <iframe
-          id="signupForm"
-          src="https://docs.google.com/forms/d/1FIeTCrKHfI6agoQvFyT31quLdj3hKmj1K4qSfhFXtp4/viewform?embedded=true"
-          width="100%"
-          frameborder="0"
-          marginheight="0"
-          marginwidth="0"
-          title="Nightmaric Saga Email Signup"
-        >
-          Loading…
-        </iframe>
-      </div>
-
-      <div id="chapterReveal" style="display:none; margin-top:24px; text-align:center;">
-        <p style="margin-bottom:10px; font-weight:600;">✦ You're in.</p>
-        <a href="/first-three-chapters.html" target="_blank"
-           style="display:inline-block; padding:14px 22px; background:#7b2fff; color:white; text-decoration:none; border-radius:6px; font-family:'Syne',sans-serif; font-size:12px; letter-spacing:0.1em; text-transform:uppercase;">
-          Read the First 3 Chapters
-        </a>
-      </div>
-
-      <p class="privacy-note">No spam. Unsubscribe anytime.</p>
-    </div>
-  </section>
 
   <!-- ESCALATION -->
   <section class="escalation" id="escalation">
@@ -1202,7 +1171,7 @@
       <li>A hospital becomes a slaughterhouse.</li>
       <li>A cult rises worshipping a mysterious Blonde Woman.</li>
       <li>In a moment of emotional rage, Cassandra pushes the Blonde Woman's head into a tear of reality.</li>
-      <li>Lillia and The Blonde Woman merge into one being.</li>
+      <li>Cassandra's best friend and The Blonde Woman merge into one being.</li>
       <li>Lillia becomes her.</li>
       <li>Persephone is her.</li>
       <li>They are Persephone.</li>
@@ -1417,7 +1386,7 @@
 
       <div class="form-embed">
         <iframe
-          id="signupForm"
+          id="signupFormBottom"
           src="https://docs.google.com/forms/d/1FIeTCrKHfI6agoQvFyT31quLdj3hKmj1K4qSfhFXtp4/viewform?embedded=true"
           width="100%"
           frameborder="0"
@@ -1429,7 +1398,7 @@
         </iframe>
       </div>
 
-      <div id="chapterReveal" style="display:none; margin-top:24px; text-align:center;">
+      <div id="chapterRevealBottom" style="display:none; margin-top:24px; text-align:center;">
         <p style="margin-bottom:10px; font-weight:600;">✦ You're in.</p>
         <a href="/first-three-chapters.html" target="_blank"
            style="display:inline-block; padding:14px 22px; background:#7b2fff; color:white; text-decoration:none; border-radius:6px; font-family:'Syne',sans-serif; font-size:12px; letter-spacing:0.1em; text-transform:uppercase;">
@@ -1537,7 +1506,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (band) band.scrollIntoView({ behavior: "smooth" });
   };
 
-  // Google Form iframe "second load = submitted" reveal
+  // Google Form iframe "second load = submitted" reveal — top form
   const signupIframe = document.getElementById("signupForm");
   const reveal = document.getElementById("chapterReveal");
 
@@ -1548,6 +1517,21 @@ document.addEventListener("DOMContentLoaded", () => {
       if (loadCount >= 2) {
         reveal.style.display = "block";
         reveal.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  }
+
+  // Google Form iframe "second load = submitted" reveal — bottom form
+  const signupIframeBottom = document.getElementById("signupFormBottom");
+  const revealBottom = document.getElementById("chapterRevealBottom");
+
+  if (signupIframeBottom && revealBottom) {
+    let loadCountBottom = 0;
+    signupIframeBottom.addEventListener("load", () => {
+      loadCountBottom += 1;
+      if (loadCountBottom >= 2) {
+        revealBottom.style.display = "block";
+        revealBottom.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     });
   }
