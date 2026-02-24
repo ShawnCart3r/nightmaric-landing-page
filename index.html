@@ -25,7 +25,6 @@ fbq('track', 'ViewContent');
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
 /></noscript>
-<!-- End Meta Pixel Code -->
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -67,7 +66,6 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
       opacity: 0.55;
     }
 
-    /* Hide custom cursor on touch devices */
     @media (hover: hover) {
       .cursor-dot {
         width: 6px;
@@ -102,7 +100,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
       inset: 0;
       background:
         radial-gradient(ellipse 90% 60% at 50% 0%, rgba(0,0,0,0.65) 0%, transparent 70%),
-        linear-gradient(to bottom, transparent 35%, rgba(5,5,10,0.92) 70%, var(--black) 100%);
+        linear-gradient(to bottom, transparent 25%, rgba(5,5,10,0.85) 60%, var(--black) 100%);
       z-index: 1;
     }
 
@@ -199,6 +197,24 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
       align-items: center;
     }
 
+    .scroll-hint {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      opacity: 0;
+      animation: fadeIn 1s 1.6s ease forwards;
+    }
+    .scroll-hint span {
+      display: block;
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, var(--accent-light), transparent);
+      margin: 0 auto;
+      animation: scrollLine 2s 1.8s ease-in-out infinite;
+    }
+
     /* ── BUTTONS ── */
     .btn {
       display: inline-block;
@@ -231,7 +247,6 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
       z-index: -1;
     }
 
-    /* On touch devices, use active state instead of hover */
     @media (hover: hover) {
       .btn:hover::before { transform: translateX(0); }
       .btn:hover { border-color: transparent; }
@@ -251,24 +266,6 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
     }
     .btn-email::before {
       background: linear-gradient(135deg, var(--violet) 0%, var(--accent) 100%);
-    }
-
-    .scroll-hint {
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
-      opacity: 0;
-      animation: fadeIn 1s 1.6s ease forwards;
-    }
-    .scroll-hint span {
-      display: block;
-      width: 1px;
-      height: 60px;
-      background: linear-gradient(to bottom, var(--accent-light), transparent);
-      margin: 0 auto;
-      animation: scrollLine 2s 1.8s ease-in-out infinite;
     }
 
     /* ── MARQUEE ── */
@@ -298,7 +295,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
 
     /* ── ESCALATION ── */
     .escalation {
-      padding: 80px 24px;
+      padding: 100px 24px;
       max-width: 860px;
       margin: 0 auto;
       text-align: center;
@@ -652,7 +649,6 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
       gap: 20px;
       max-width: 720px;
       margin: 0 auto;
-      padding: 0 0;
       position: relative;
       z-index: 1;
     }
@@ -672,7 +668,6 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
       transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Desktop hover */
     @media (hover: hover) {
       .flip-card:hover .flip-inner { transform: rotateY(180deg); }
     }
@@ -738,7 +733,6 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
       color: #fff;
     }
 
-    /* On mobile: show tap hint instead of hover hint */
     .flip-hint {
       position: absolute;
       top: 18px;
@@ -825,18 +819,38 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
 
     /* ── FOOTER ── */
     .footer {
-      padding: 32px 24px;
+      padding: 40px 24px;
       margin-top: 80px;
       text-align: center;
       border-top: 1px solid rgba(255,255,255,0.04);
     }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-family: 'Syne', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--accent-light); }
 
     .footer p {
       font-family: 'Syne', sans-serif;
       font-size: 10px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.15);
     }
 
     /* ── ANIMATIONS ── */
@@ -871,11 +885,68 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
       transform: translateY(0);
     }
 
+    /* ── STICKY NAV ── */
+    .sticky-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 500;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(5,5,10,0);
+      backdrop-filter: blur(0px);
+      -webkit-backdrop-filter: blur(0px);
+      transition: background 0.4s, backdrop-filter 0.4s;
+      pointer-events: none;
+    }
+
+    .sticky-nav.scrolled {
+      background: rgba(5,5,10,0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      pointer-events: all;
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0);
+      transition: color 0.4s;
+      text-decoration: none;
+    }
+
+    .sticky-nav.scrolled .nav-logo { color: rgba(255,255,255,0.6); }
+
+    .nav-cta {
+      font-family: 'Syne', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #fff;
+      padding: 10px 20px;
+      border: 1px solid rgba(194,24,91,0.5);
+      border-radius: 2px;
+      text-decoration: none;
+      opacity: 0;
+      transition: opacity 0.4s, background 0.3s;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .sticky-nav.scrolled .nav-cta { opacity: 1; }
+    .nav-cta:hover { background: rgba(194,24,91,0.2); }
+
     /* ═══════════════════════════════════════════
        MOBILE BREAKPOINTS
     ═══════════════════════════════════════════ */
 
-    /* ── Tablet (max 900px) ── */
     @media (max-width: 900px) {
       .persephone-inner {
         grid-template-columns: 1fr;
@@ -886,9 +957,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
       }
     }
 
-    /* ── Mobile (max 700px) ── */
     @media (max-width: 700px) {
-      /* Hero */
       .hero {
         padding: 0 20px 40px;
         justify-content: flex-end;
@@ -903,9 +972,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
         font-size: clamp(30px, 9vw, 48px);
         line-height: 1;
       }
-      h1 em {
-        font-size: 1em;
-      }
+      h1 em { font-size: 1em; }
       .hero-tagline {
         font-size: 15px;
         margin-top: 16px;
@@ -924,83 +991,40 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
       }
       .scroll-hint { display: none; }
 
-      /* Escalation */
-      .escalation {
-        padding: 60px 20px;
-      }
+      .escalation { padding: 60px 20px; }
       .escalation-list li {
         padding: 16px 0 16px 36px;
         font-size: 16px;
       }
-      .escalation-cta {
-        margin-top: 40px;
-      }
-      .escalation-cta .btn {
-        width: 100%;
-        text-align: center;
-      }
+      .escalation-cta { margin-top: 40px; }
+      .escalation-cta .btn { width: 100%; text-align: center; }
 
-      /* Persephone */
-      .persephone {
-        padding: 60px 20px;
-      }
-      .persephone-inner {
-        grid-template-columns: 1fr;
-        gap: 36px;
-      }
-      .quote-block {
-        padding: 24px 20px 24px 24px;
-      }
+      .persephone { padding: 60px 20px; }
+      .persephone-inner { grid-template-columns: 1fr; gap: 36px; }
+      .quote-block { padding: 24px 20px 24px 24px; }
 
-      /* Proof */
-      .proof {
-        padding: 60px 20px;
-      }
-      .proof-stats {
-        grid-template-columns: 1fr;
-        gap: 2px;
-      }
-      .stat {
-        padding: 28px 20px;
-      }
-      .proof .btn {
-        width: 100%;
-        text-align: center;
-      }
+      .proof { padding: 60px 20px; }
+      .proof-stats { grid-template-columns: 1fr; gap: 2px; }
+      .stat { padding: 28px 20px; }
+      .proof .btn { width: 100%; text-align: center; }
 
-      /* Email band */
-      .email-band {
-        padding: 50px 20px;
-      }
-      .form-embed iframe {
-        height: 900px;
-      }
+      .email-band { padding: 50px 20px; }
+      .form-embed iframe { height: 900px; }
 
-      /* Final CTA */
-      .final-cta {
-        padding: 70px 20px;
-      }
-      .final-cta-inner {
-        margin-bottom: 40px;
-      }
+      .final-cta { padding: 70px 20px; }
+      .final-cta-inner { margin-bottom: 40px; }
 
-      /* Flip grid — single column on mobile */
       .flip-grid {
         grid-template-columns: 1fr;
         max-width: 400px;
         gap: 16px;
         padding: 0 4px;
       }
-      .flip-card {
-        height: 420px;
-      }
-      /* On mobile: tap to flip (not hover) */
-      .flip-hint {
-        content: '';
-      }
+      .flip-card { height: 420px; }
+
+      .footer-links { gap: 20px; }
     }
 
-    /* ── Small phones (max 390px) ── */
     @media (max-width: 390px) {
       .flip-card { height: 380px; }
       .flip-back-content { padding: 20px 18px; gap: 8px; }
@@ -1012,6 +1036,17 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
 
 <body>
   <div class="cursor-dot" id="cursorDot"></div>
+
+  <!-- STICKY NAV -->
+  <nav class="sticky-nav" id="stickyNav">
+    <a class="nav-logo" href="#">The Nightmaric Saga</a>
+    <a class="nav-cta"
+       href="https://www.amazon.com/dp/B0GJTZY531"
+       target="_blank" rel="noopener noreferrer"
+       onclick="fbq('trackCustom','ClickToAmazon');">
+      Read Now
+    </a>
+  </nav>
 
   <!-- HERO -->
   <section class="hero">
@@ -1032,7 +1067,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
 
       <div class="hero-cta">
         <a class="btn"
-           href="https://www.amazon.com/Nightmaric-Saga-Complete-Fractured-Arc-ebook/dp/B0GJTZY531/ref=sr_1_1?crid=30HWWU2ZGWJL9&dib=eyJ2IjoiMSJ9.ku1RxMbPsn-_fT4RnxLLCfsBbHK0-TXhS00RQcWow9o0UqTMiO1oqp_XOVGef67iS7MYcf5Ajm5BrXazSto_mCJTGL49J6Dq_PfNc8EyqOt2x56PEpIZIy4ljjFV5ppkhRU4V3LNaNLbT8f6r7sYjw.50RrTb9pZ84EPM1Tn7U7r0qIfKSAGSNxtf-IhYTM5xg&dib_tag=se&keywords=the+complete+fractured+arc&qid=1771947140&sprefix=%2Caps%2C572&sr=8-1"
+           href="https://www.amazon.com/dp/B0GJTZY531"
            target="_blank" rel="noopener noreferrer"
            onclick="fbq('trackCustom','ClickToAmazon');">
           Start the Omnibus
@@ -1041,8 +1076,8 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
           Get Updates
         </button>
         <a class="btn btn-ghost"
-           href="https://www.amazon.com/dp/B0GDNNW5TT?binding=kindle_edition&ref=dbs_dp_rwt_sb_pc_tkin"
-           target="_blank">
+           href="https://www.amazon.com/stores/Shawn-Carter/author/B0GG64JNSB"
+           target="_blank" rel="noopener noreferrer">
           Browse the Series →
         </a>
       </div>
@@ -1072,6 +1107,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
     </div>
 
     <div class="flip-grid fade-in">
+
       <div class="flip-card" tabindex="0" role="button" aria-label="Episode One: The Fractured Girl">
         <div class="flip-inner">
           <div class="flip-front">
@@ -1087,7 +1123,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
               <span class="flip-eyebrow">Cassandra just wants to live a normal, boring, and uneventful life.</span>
               <h3>The Nightmaric Saga<br><em>Episode One : The Fractured Girl</em></h3>
               <p>Cassandra's a broke college student who wanted a quiet morning. Instead, she gets a ship falling out of the sky, her best friend infected with something ancient and hungry, and a hospital full of people tearing into one another.</p>
-              <a class="btn flip-btn" href="https://www.amazon.com/Nightmaric-Saga-Episode-Fractured-Girl-ebook/dp/B0G4ZQB6YC/ref=pd_sbs_d_sccl_2_1/139-8104516-4312434?pd_rd_w=CRA9p&content-id=amzn1.sym.aa738fbd-ad05-4d11-aae2-04b598db6305&pf_rd_p=aa738fbd-ad05-4d11-aae2-04b598db6305&pf_rd_r=1Z01BP00YFMMK5KR17DS&pd_rd_wg=VY3AE&pd_rd_r=62770c94-3916-4a03-8c4a-8197da9bae48&pd_rd_i=B0G4ZQB6YC&psc=1" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
+              <a class="btn flip-btn" href="https://www.amazon.com/dp/B0G4ZQB6YC" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
             </div>
           </div>
         </div>
@@ -1108,7 +1144,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
               <span class="flip-eyebrow">The Blonde Woman makes her move</span>
               <h3>The Nightmaric Saga<br><em>Episode Two : The Fractured Blonde</em></h3>
               <p>Cassandra wakes under Shadow observation with gaps in her memory and fractures in her perception she can't explain. She slips between locations without moving, rooms shift when she looks away, and entire events vanish from recorded reality.</p>
-              <a class="btn flip-btn" href="https://www.amazon.com/Nightmaric-Saga-Episode-Fractured-Blonde-ebook/dp/B0G6XBNFX2?ref_=saga_dp_bnx_dsk_dp" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
+              <a class="btn flip-btn" href="https://www.amazon.com/dp/B0G6XBNFX2" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
             </div>
           </div>
         </div>
@@ -1129,7 +1165,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
               <span class="flip-eyebrow">Cassandra's and Persephone's world collide.</span>
               <h3>The Nightmaric Saga<br><em>Episode Three : The Fractured Women</em></h3>
               <p>Cassandra wages a desperate final stand against Persephone while reality burns. Combining cosmic horror, dark humor, military chaos, apocalyptic stakes, and a countdown to extinction.</p>
-              <a class="btn flip-btn" href="https://www.amazon.com/Nightmaric-Saga-Episode-Fractured-Women-ebook/dp/B0GG5XFH8P?ref_=saga_dp_bnx_dsk_dp" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
+              <a class="btn flip-btn" href="https://www.amazon.com/dp/B0GG5XFH8P" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
             </div>
           </div>
         </div>
@@ -1150,7 +1186,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
               <span class="flip-eyebrow">Three episodes. One volume.</span>
               <h3>The Nightmaric Saga<br><em>Omnibus</em></h3>
               <p>The complete first arc. Persephone awakens and reality begins to splinter. Reality will never be the same again.</p>
-              <a class="btn flip-btn" href="https://www.amazon.com/Nightmaric-Saga-Complete-Fractured-Arc-ebook/dp/B0GJTZY531/ref=sr_1_1?crid=30HWWU2ZGWJL9&dib=eyJ2IjoiMSJ9.ku1RxMbPsn-_fT4RnxLLCfsBbHK0-TXhS00RQcWow9o0UqTMiO1oqp_XOVGef67iS7MYcf5Ajm5BrXazSto_mCJTGL49J6Dq_PfNc8EyqOt2x56PEpIZIy4ljjFV5ppkhRU4V3LNaNLbT8f6r7sYjw.50RrTb9pZ84EPM1Tn7U7r0qIfKSAGSNxtf-IhYTM5xg&dib_tag=se&keywords=the+complete+fractured+arc&qid=1771947140&sprefix=%2Caps%2C572&sr=8-1" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
+              <a class="btn flip-btn" href="https://www.amazon.com/dp/B0GJTZY531" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
             </div>
           </div>
         </div>
@@ -1171,11 +1207,12 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
               <span class="flip-eyebrow">A 17 year old and an exhausted super soldier stand against Persephone and her blood thirsty hordes.</span>
               <h3>The Nightmaric Saga<br><em>Special Episode : Syriana</em></h3>
               <p>An immortal soldier guards the last way out of a dying world while an eldritch god watches from the crowd, waiting to see who earns her attention.</p>
-              <a class="btn flip-btn" href="https://www.amazon.com/Nightmaric-Saga-Special-Episode-Syriana-ebook/dp/B0GLL77CDT/ref=pd_sbs_d_sccl_2_1/139-8104516-4312434?pd_rd_w=xsDxX&content-id=amzn1.sym.aa738fbd-ad05-4d11-aae2-04b598db6305&pf_rd_p=aa738fbd-ad05-4d11-aae2-04b598db6305&pf_rd_r=778M5TAN2WFJ4YA98S0B&pd_rd_wg=1sb75&pd_rd_r=057464cf-494c-426f-8cb6-1ea57243f900&pd_rd_i=B0GLL77CDT&psc=1" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
+              <a class="btn flip-btn" href="https://www.amazon.com/dp/B0GLL77CDT" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
             </div>
           </div>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -1198,7 +1235,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
 
     <div class="escalation-cta fade-in">
       <a class="btn"
-         href="https://www.amazon.com/Nightmaric-Saga-Complete-Fractured-Arc-ebook/dp/B0GJTZY531/ref=sr_1_1?crid=30HWWU2ZGWJL9&dib=eyJ2IjoiMSJ9.ku1RxMbPsn-_fT4RnxLLCfsBbHK0-TXhS00RQcWow9o0UqTMiO1oqp_XOVGef67iS7MYcf5Ajm5BrXazSto_mCJTGL49J6Dq_PfNc8EyqOt2x56PEpIZIy4ljjFV5ppkhRU4V3LNaNLbT8f6r7sYjw.50RrTb9pZ84EPM1Tn7U7r0qIfKSAGSNxtf-IhYTM5xg&dib_tag=se&keywords=the+complete+fractured+arc&qid=1771947140&sprefix=%2Caps%2C572&sr=8-1"
+         href="https://www.amazon.com/dp/B0GJTZY531"
          target="_blank" rel="noopener noreferrer"
          onclick="fbq('trackCustom','ClickToAmazon');">
         Start with the Omnibus
@@ -1206,7 +1243,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
     </div>
 
     <!-- PERSEPHONE -->
-    <section class="persephone" style="margin: 80px -24px -80px; padding: 80px 24px;">
+    <section class="persephone" style="margin: 80px -24px -100px; padding: 80px 24px;">
       <div class="persephone-inner">
         <div class="persephone-text fade-in">
           <span class="label">Persephone enjoys watching reality tear itself apart around her</span>
@@ -1228,7 +1265,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
 
       <div class="proof-stats fade-in">
         <div class="stat">
-          <span class="stat-number">Top 30</span>
+          <span class="stat-number">Top 35</span>
           <span class="stat-label">Cosmic Horror</span>
           <div class="stat-accent"></div>
         </div>
@@ -1246,7 +1283,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
 
       <div style="margin-top: 60px;" class="fade-in">
         <a class="btn"
-           href="https://www.amazon.com/stores/Shawn-Carter/author/B0GG64JNSB?ref=ap_rdr&shoppingPortalEnabled=true"
+           href="https://www.amazon.com/stores/Shawn-Carter/author/B0GG64JNSB"
            target="_blank" rel="noopener noreferrer"
            onclick="fbq('trackCustom','ClickToAmazon');">
           Enter the Nightmaric Saga
@@ -1255,7 +1292,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
     </section>
   </section>
 
-  <!-- FINAL CTA + FLIP CARDS -->
+  <!-- FINAL CTA + FLIP CARDS (BOTTOM) -->
   <section class="final-cta">
     <div class="final-cta-inner fade-in">
       <h2>It's their world.<br><em>Reality is just trying to survive it.</em></h2>
@@ -1263,6 +1300,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
     </div>
 
     <div class="flip-grid fade-in">
+
       <div class="flip-card" tabindex="0" role="button" aria-label="Episode One: The Fractured Girl">
         <div class="flip-inner">
           <div class="flip-front">
@@ -1278,12 +1316,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
               <span class="flip-eyebrow">Cassandra just wants to live a normal, boring, and uneventful life.</span>
               <h3>The Nightmaric Saga<br><em>Episode One : The Fractured Girl</em></h3>
               <p>Cassandra's a broke college student who wanted a quiet morning. Instead, she gets a ship falling out of the sky, her best friend infected with something ancient and hungry, and a hospital full of people tearing into one another.</p>
-              <a class="btn flip-btn"
-                 href="https://www.amazon.com/Nightmaric-Saga-Episode-Fractured-Girl-ebook/dp/B0G4ZQB6YC/ref=pd_sbs_d_sccl_2_1/139-8104516-4312434?pd_rd_w=CRA9p&content-id=amzn1.sym.aa738fbd-ad05-4d11-aae2-04b598db6305&pf_rd_p=aa738fbd-ad05-4d11-aae2-04b598db6305&pf_rd_r=1Z01BP00YFMMK5KR17DS&pd_rd_wg=VY3AE&pd_rd_r=62770c94-3916-4a03-8c4a-8197da9bae48&pd_rd_i=B0G4ZQB6YC&psc=1"
-                 target="_blank" rel="noopener noreferrer"
-                 onclick="fbq('trackCustom','ClickToAmazon');">
-                Read on Amazon
-              </a>
+              <a class="btn flip-btn" href="https://www.amazon.com/dp/B0G4ZQB6YC" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
             </div>
           </div>
         </div>
@@ -1304,12 +1337,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
               <span class="flip-eyebrow">The Blonde Woman makes her move</span>
               <h3>The Nightmaric Saga<br><em>Episode Two : The Fractured Blonde</em></h3>
               <p>Cassandra wakes under Shadow observation with gaps in her memory and fractures in her perception she can't explain. She slips between locations without moving, rooms shift when she looks away, and entire events vanish from recorded reality.</p>
-              <a class="btn flip-btn"
-                 href="https://www.amazon.com/Nightmaric-Saga-Episode-Fractured-Blonde-ebook/dp/B0G6XBNFX2?ref_=saga_dp_bnx_dsk_dp"
-                 target="_blank" rel="noopener noreferrer"
-                 onclick="fbq('trackCustom','ClickToAmazon');">
-                Read on Amazon
-              </a>
+              <a class="btn flip-btn" href="https://www.amazon.com/dp/B0G6XBNFX2" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
             </div>
           </div>
         </div>
@@ -1330,12 +1358,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
               <span class="flip-eyebrow">Cassandra's and Persephone's world collide.</span>
               <h3>The Nightmaric Saga<br><em>Episode Three : The Fractured Women</em></h3>
               <p>Cassandra wages a desperate final stand against Persephone while reality burns. Combining cosmic horror, dark humor, military chaos, apocalyptic stakes, and a countdown to extinction.</p>
-              <a class="btn flip-btn"
-                 href="https://www.amazon.com/Nightmaric-Saga-Episode-Fractured-Women-ebook/dp/B0GG5XFH8P?ref_=saga_dp_bnx_dsk_dp"
-                 target="_blank" rel="noopener noreferrer"
-                 onclick="fbq('trackCustom','ClickToAmazon');">
-                Read on Amazon
-              </a>
+              <a class="btn flip-btn" href="https://www.amazon.com/dp/B0GG5XFH8P" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
             </div>
           </div>
         </div>
@@ -1356,12 +1379,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
               <span class="flip-eyebrow">Three episodes. One volume.</span>
               <h3>The Nightmaric Saga<br><em>Omnibus</em></h3>
               <p>The complete first arc. Persephone awakens and reality begins to splinter. Reality will never be the same again.</p>
-              <a class="btn flip-btn"
-                 href="https://www.amazon.com/Nightmaric-Saga-Complete-Fractured-Arc-ebook/dp/B0GJTZY531/ref=sr_1_1?crid=30HWWU2ZGWJL9&dib=eyJ2IjoiMSJ9.ku1RxMbPsn-_fT4RnxLLCfsBbHK0-TXhS00RQcWow9o0UqTMiO1oqp_XOVGef67iS7MYcf5Ajm5BrXazSto_mCJTGL49J6Dq_PfNc8EyqOt2x56PEpIZIy4ljjFV5ppkhRU4V3LNaNLbT8f6r7sYjw.50RrTb9pZ84EPM1Tn7U7r0qIfKSAGSNxtf-IhYTM5xg&dib_tag=se&keywords=the+complete+fractured+arc&qid=1771947140&sprefix=%2Caps%2C572&sr=8-1"
-                 target="_blank" rel="noopener noreferrer"
-                 onclick="fbq('trackCustom','ClickToAmazon');">
-                Read on Amazon
-              </a>
+              <a class="btn flip-btn" href="https://www.amazon.com/dp/B0GJTZY531" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
             </div>
           </div>
         </div>
@@ -1382,16 +1400,12 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
               <span class="flip-eyebrow">A 17 year old and an exhausted super soldier stand against Persephone and her blood thirsty hordes.</span>
               <h3>The Nightmaric Saga<br><em>Special Episode : Syriana</em></h3>
               <p>An immortal soldier guards the last way out of a dying world while an eldritch god watches from the crowd, waiting to see who earns her attention.</p>
-              <a class="btn flip-btn"
-                 href="https://www.amazon.com/Nightmaric-Saga-Special-Episode-Syriana-ebook/dp/B0GLL77CDT/ref=pd_sbs_d_sccl_2_1/139-8104516-4312434?pd_rd_w=xsDxX&content-id=amzn1.sym.aa738fbd-ad05-4d11-aae2-04b598db6305&pf_rd_p=aa738fbd-ad05-4d11-aae2-04b598db6305&pf_rd_r=778M5TAN2WFJ4YA98S0B&pd_rd_wg=1sb75&pd_rd_r=057464cf-494c-426f-8cb6-1ea57243f900&pd_rd_i=B0GLL77CDT&psc=1"
-                 target="_blank" rel="noopener noreferrer"
-                 onclick="fbq('trackCustom','ClickToAmazon');">
-                Read on Amazon
-              </a>
+              <a class="btn flip-btn" href="https://www.amazon.com/dp/B0GLL77CDT" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
             </div>
           </div>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -1432,11 +1446,11 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
   <div class="marquee-wrap">
     <div class="marquee-track">
       <span class="marquee-item">Cosmic Horror <span>✦</span></span>
-      <span class="marquee-item">Ranked Top 30 in Cosmic Horror on Amazon <span>✦</span></span>
+      <span class="marquee-item">Ranked Top 35 in Cosmic Horror on Amazon <span>✦</span></span>
       <span class="marquee-item">The Nightmaric Saga <span>✦</span></span>
       <span class="marquee-item">All Roads Lead to Persephone <span>✦</span></span>
       <span class="marquee-item">Cosmic Horror <span>✦</span></span>
-      <span class="marquee-item">Ranked Top 30 in Cosmic Horror on Amazon <span>✦</span></span>
+      <span class="marquee-item">Ranked Top 35 in Cosmic Horror on Amazon <span>✦</span></span>
       <span class="marquee-item">The Nightmaric Saga <span>✦</span></span>
       <span class="marquee-item">All Roads Lead to Persephone <span>✦</span></span>
     </div>
@@ -1444,20 +1458,21 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
 
   <!-- FOOTER -->
   <footer class="footer">
+    <div class="footer-links">
+      <a href="https://www.amazon.com/stores/Shawn-Carter/author/B0GG64JNSB" target="_blank" rel="noopener noreferrer">Amazon</a>
+      <a href="#signup">Newsletter</a>
+      <a href="https://www.amazon.com/dp/B0GJTZY531" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Start Reading</a>
+    </div>
     <p>© <span id="year"></span> Shawn Carter — The Nightmaric Saga</p>
   </footer>
 
   <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const FORM_ACTION_URL = "https://docs.google.com/forms/d/e/1FAIpQLScWtXVyGLkr0AGRcFmlC7cc9J4z9MzN2Ink-oNAwy8NWDOskQ/viewform?usp=dialog";
-  const ENTRY_NAME  = "entry.XXXXXXXXXX";
-  const ENTRY_EMAIL = "entry.XXXXXXXXXX";
 
   // Year
-  const yearEl = document.getElementById("year");
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
+  document.getElementById("year").textContent = new Date().getFullYear();
 
-  // Custom cursor — only on non-touch devices
+  // Custom cursor
   const dot = document.getElementById("cursorDot");
   if (dot && window.matchMedia("(hover: hover)").matches) {
     document.addEventListener("mousemove", e => {
@@ -1469,6 +1484,12 @@ document.addEventListener("DOMContentLoaded", () => {
   } else if (dot) {
     dot.style.display = "none";
   }
+
+  // Sticky nav on scroll
+  const nav = document.getElementById("stickyNav");
+  window.addEventListener("scroll", () => {
+    nav.classList.toggle("scrolled", window.scrollY > 80);
+  }, { passive: true });
 
   // Intersection Observer for fade-ins
   const observer = new IntersectionObserver((entries) => {
@@ -1485,11 +1506,9 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(el);
   });
 
-  // Flip card — tap on mobile, click on desktop
+  // Flip cards — tap on mobile, hover on desktop
   document.querySelectorAll(".flip-card").forEach(card => {
-    // Handle both click (desktop) and touch (mobile)
     card.addEventListener("click", (e) => {
-      // If clicking the Amazon button inside, don't toggle
       if (e.target.closest('a')) return;
       card.classList.toggle("flipped");
     });
@@ -1501,7 +1520,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Escalation list hover — only on non-touch devices
+  // Escalation hover — desktop only
   if (window.matchMedia("(hover: hover)").matches) {
     document.querySelectorAll(".escalation-list li").forEach(li => {
       li.addEventListener("mouseenter", () => {
@@ -1520,26 +1539,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Scroll to signup
   window.openEmailModal = function() {
-    const band = document.querySelector(".email-band");
-    if (band) band.scrollIntoView({ behavior: "smooth" });
+    document.querySelector(".email-band").scrollIntoView({ behavior: "smooth" });
   };
 
-  // Google Form iframe "second load = submitted" reveal — top form
-  const signupIframe = document.getElementById("signupForm");
-  const reveal = document.getElementById("chapterReveal");
-
-  if (signupIframe && reveal) {
-    let loadCount = 0;
-    signupIframe.addEventListener("load", () => {
-      loadCount += 1;
-      if (loadCount >= 2) {
-        reveal.style.display = "block";
-        reveal.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    });
-  }
-
-  // Google Form iframe "second load = submitted" reveal — bottom form
+  // Google Form submit reveal
   const signupIframeBottom = document.getElementById("signupFormBottom");
   const revealBottom = document.getElementById("chapterRevealBottom");
 
@@ -1554,9 +1557,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Adjust iframe height based on screen width
+  // Responsive iframe height
   function adjustFormHeight() {
-    const iframe = document.getElementById("signupForm");
+    const iframe = document.getElementById("signupFormBottom");
     if (!iframe) return;
     if (window.innerWidth <= 480) {
       iframe.style.height = "1000px";
