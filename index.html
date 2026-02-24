@@ -8,24 +8,24 @@
 
   <meta name="facebook-domain-verification" content="YOUR_VERIFICATION_CODE" />
 
-  <!-- Meta Pixel -->
-  <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', 'YOUR_PIXEL_ID');
-  fbq('track', 'PageView');
-  fbq('track', 'ViewContent');
-  </script>
-  <noscript>
-    <img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/>
-  </noscript>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '944370288015026');
+fbq('track', 'PageView');
+fbq('track', 'ViewContent');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -148,6 +148,7 @@
       margin-bottom: 0;
       opacity: 0;
       animation: fadeUp 1s 0.45s ease forwards;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.8), 0 0 40px rgba(0,0,0,0.6);
     }
 
     h1 em {
@@ -157,18 +158,29 @@
       font-size: 1.08em;
       color: var(--accent-light);
       display: block;
-      line-height: 1;
+      line-height: 1.2;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.9), 0 0 30px rgba(0,0,0,0.8);
+      background: rgba(0,0,0,0.3);
+      padding: 4px 8px;
+      border-radius: 2px;
+      margin-top: 6px;
     }
 
     .hero-tagline {
-      margin-top: 32px;
+      margin-top: 24px;
       font-size: clamp(16px, 2.2vw, 21px);
       font-weight: 300;
-      color: rgba(232,228,220,0.72);
+      color: rgba(232,228,220,0.95);
       line-height: 1.8;
       letter-spacing: 0.01em;
       opacity: 0;
       animation: fadeUp 1s 0.7s ease forwards;
+      text-shadow: 0 1px 10px rgba(0,0,0,0.9);
+      background: rgba(0,0,0,0.35);
+      padding: 12px 16px;
+      border-radius: 4px;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
     }
 
     .hero-tagline strong {
@@ -878,24 +890,29 @@
     @media (max-width: 700px) {
       /* Hero */
       .hero {
-        padding: 0 20px 60px;
+        padding: 0 20px 40px;
         justify-content: flex-end;
         min-height: 100svh;
       }
       .eyebrow {
         font-size: 9px;
         letter-spacing: 0.22em;
-        margin-bottom: 16px;
+        margin-bottom: 12px;
       }
       h1 {
-        font-size: clamp(34px, 10vw, 52px);
+        font-size: clamp(30px, 9vw, 48px);
+        line-height: 1;
+      }
+      h1 em {
+        font-size: 1em;
       }
       .hero-tagline {
-        font-size: 16px;
-        margin-top: 20px;
+        font-size: 15px;
+        margin-top: 16px;
+        padding: 10px 14px;
       }
       .hero-cta {
-        margin-top: 32px;
+        margin-top: 24px;
         flex-direction: column;
         align-items: stretch;
         gap: 10px;
@@ -903,6 +920,7 @@
       .hero-cta .btn {
         width: 100%;
         text-align: center;
+        padding: 16px 24px;
       }
       .scroll-hint { display: none; }
 
@@ -1014,7 +1032,7 @@
 
       <div class="hero-cta">
         <a class="btn"
-           href="https://a.co/d/01n0cX11"
+           href="https://www.amazon.com/Nightmaric-Saga-Complete-Fractured-Arc-ebook/dp/B0GJTZY531/ref=sr_1_1?crid=30HWWU2ZGWJL9&dib=eyJ2IjoiMSJ9.ku1RxMbPsn-_fT4RnxLLCfsBbHK0-TXhS00RQcWow9o0UqTMiO1oqp_XOVGef67iS7MYcf5Ajm5BrXazSto_mCJTGL49J6Dq_PfNc8EyqOt2x56PEpIZIy4ljjFV5ppkhRU4V3LNaNLbT8f6r7sYjw.50RrTb9pZ84EPM1Tn7U7r0qIfKSAGSNxtf-IhYTM5xg&dib_tag=se&keywords=the+complete+fractured+arc&qid=1771947140&sprefix=%2Caps%2C572&sr=8-1"
            target="_blank" rel="noopener noreferrer"
            onclick="fbq('trackCustom','ClickToAmazon');">
           Start the Omnibus
@@ -1069,7 +1087,7 @@
               <span class="flip-eyebrow">Cassandra just wants to live a normal, boring, and uneventful life.</span>
               <h3>The Nightmaric Saga<br><em>Episode One : The Fractured Girl</em></h3>
               <p>Cassandra's a broke college student who wanted a quiet morning. Instead, she gets a ship falling out of the sky, her best friend infected with something ancient and hungry, and a hospital full of people tearing into one another.</p>
-              <a class="btn flip-btn" href="https://a.co/d/03hdwcRx" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
+              <a class="btn flip-btn" href="https://www.amazon.com/Nightmaric-Saga-Episode-Fractured-Girl-ebook/dp/B0G4ZQB6YC/ref=pd_sbs_d_sccl_2_1/139-8104516-4312434?pd_rd_w=CRA9p&content-id=amzn1.sym.aa738fbd-ad05-4d11-aae2-04b598db6305&pf_rd_p=aa738fbd-ad05-4d11-aae2-04b598db6305&pf_rd_r=1Z01BP00YFMMK5KR17DS&pd_rd_wg=VY3AE&pd_rd_r=62770c94-3916-4a03-8c4a-8197da9bae48&pd_rd_i=B0G4ZQB6YC&psc=1" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
             </div>
           </div>
         </div>
@@ -1090,7 +1108,7 @@
               <span class="flip-eyebrow">The Blonde Woman makes her move</span>
               <h3>The Nightmaric Saga<br><em>Episode Two : The Fractured Blonde</em></h3>
               <p>Cassandra wakes under Shadow observation with gaps in her memory and fractures in her perception she can't explain. She slips between locations without moving, rooms shift when she looks away, and entire events vanish from recorded reality.</p>
-              <a class="btn flip-btn" href="https://a.co/d/0hzLPEaw" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
+              <a class="btn flip-btn" href="https://www.amazon.com/Nightmaric-Saga-Episode-Fractured-Blonde-ebook/dp/B0G6XBNFX2?ref_=saga_dp_bnx_dsk_dp" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
             </div>
           </div>
         </div>
@@ -1111,7 +1129,7 @@
               <span class="flip-eyebrow">Cassandra's and Persephone's world collide.</span>
               <h3>The Nightmaric Saga<br><em>Episode Three : The Fractured Women</em></h3>
               <p>Cassandra wages a desperate final stand against Persephone while reality burns. Combining cosmic horror, dark humor, military chaos, apocalyptic stakes, and a countdown to extinction.</p>
-              <a class="btn flip-btn" href="https://a.co/d/082eYdCa" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
+              <a class="btn flip-btn" href="https://www.amazon.com/Nightmaric-Saga-Episode-Fractured-Women-ebook/dp/B0GG5XFH8P?ref_=saga_dp_bnx_dsk_dp" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
             </div>
           </div>
         </div>
@@ -1132,7 +1150,7 @@
               <span class="flip-eyebrow">Three episodes. One volume.</span>
               <h3>The Nightmaric Saga<br><em>Omnibus</em></h3>
               <p>The complete first arc. Persephone awakens and reality begins to splinter. Reality will never be the same again.</p>
-              <a class="btn flip-btn" href="https://a.co/d/01n0cX11" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
+              <a class="btn flip-btn" href="https://www.amazon.com/Nightmaric-Saga-Complete-Fractured-Arc-ebook/dp/B0GJTZY531/ref=sr_1_1?crid=30HWWU2ZGWJL9&dib=eyJ2IjoiMSJ9.ku1RxMbPsn-_fT4RnxLLCfsBbHK0-TXhS00RQcWow9o0UqTMiO1oqp_XOVGef67iS7MYcf5Ajm5BrXazSto_mCJTGL49J6Dq_PfNc8EyqOt2x56PEpIZIy4ljjFV5ppkhRU4V3LNaNLbT8f6r7sYjw.50RrTb9pZ84EPM1Tn7U7r0qIfKSAGSNxtf-IhYTM5xg&dib_tag=se&keywords=the+complete+fractured+arc&qid=1771947140&sprefix=%2Caps%2C572&sr=8-1" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
             </div>
           </div>
         </div>
@@ -1153,7 +1171,7 @@
               <span class="flip-eyebrow">A 17 year old and an exhausted super soldier stand against Persephone and her blood thirsty hordes.</span>
               <h3>The Nightmaric Saga<br><em>Special Episode : Syriana</em></h3>
               <p>An immortal soldier guards the last way out of a dying world while an eldritch god watches from the crowd, waiting to see who earns her attention.</p>
-              <a class="btn flip-btn" href="https://a.co/d/0fX3976V" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
+              <a class="btn flip-btn" href="https://www.amazon.com/Nightmaric-Saga-Special-Episode-Syriana-ebook/dp/B0GLL77CDT/ref=pd_sbs_d_sccl_2_1/139-8104516-4312434?pd_rd_w=xsDxX&content-id=amzn1.sym.aa738fbd-ad05-4d11-aae2-04b598db6305&pf_rd_p=aa738fbd-ad05-4d11-aae2-04b598db6305&pf_rd_r=778M5TAN2WFJ4YA98S0B&pd_rd_wg=1sb75&pd_rd_r=057464cf-494c-426f-8cb6-1ea57243f900&pd_rd_i=B0GLL77CDT&psc=1" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
             </div>
           </div>
         </div>
@@ -1180,7 +1198,7 @@
 
     <div class="escalation-cta fade-in">
       <a class="btn"
-         href="https://a.co/d/01n0cX11"
+         href="https://www.amazon.com/Nightmaric-Saga-Complete-Fractured-Arc-ebook/dp/B0GJTZY531/ref=sr_1_1?crid=30HWWU2ZGWJL9&dib=eyJ2IjoiMSJ9.ku1RxMbPsn-_fT4RnxLLCfsBbHK0-TXhS00RQcWow9o0UqTMiO1oqp_XOVGef67iS7MYcf5Ajm5BrXazSto_mCJTGL49J6Dq_PfNc8EyqOt2x56PEpIZIy4ljjFV5ppkhRU4V3LNaNLbT8f6r7sYjw.50RrTb9pZ84EPM1Tn7U7r0qIfKSAGSNxtf-IhYTM5xg&dib_tag=se&keywords=the+complete+fractured+arc&qid=1771947140&sprefix=%2Caps%2C572&sr=8-1"
          target="_blank" rel="noopener noreferrer"
          onclick="fbq('trackCustom','ClickToAmazon');">
         Start with the Omnibus
@@ -1240,7 +1258,7 @@
   <!-- FINAL CTA + FLIP CARDS -->
   <section class="final-cta">
     <div class="final-cta-inner fade-in">
-      <h2>Reality has begun<br><em>to splinter</em></h2>
+      <h2>It's their world.<br><em>Reality is just trying to survive it.</em></h2>
       <p>Four episodes available now. The Omnibus contains three of them.<br>The Nightmaric Saga Special Episode: Syriana is out now!</p>
     </div>
 
@@ -1261,7 +1279,7 @@
               <h3>The Nightmaric Saga<br><em>Episode One : The Fractured Girl</em></h3>
               <p>Cassandra's a broke college student who wanted a quiet morning. Instead, she gets a ship falling out of the sky, her best friend infected with something ancient and hungry, and a hospital full of people tearing into one another.</p>
               <a class="btn flip-btn"
-                 href="https://a.co/d/03hdwcRx"
+                 href="https://www.amazon.com/Nightmaric-Saga-Episode-Fractured-Girl-ebook/dp/B0G4ZQB6YC/ref=pd_sbs_d_sccl_2_1/139-8104516-4312434?pd_rd_w=CRA9p&content-id=amzn1.sym.aa738fbd-ad05-4d11-aae2-04b598db6305&pf_rd_p=aa738fbd-ad05-4d11-aae2-04b598db6305&pf_rd_r=1Z01BP00YFMMK5KR17DS&pd_rd_wg=VY3AE&pd_rd_r=62770c94-3916-4a03-8c4a-8197da9bae48&pd_rd_i=B0G4ZQB6YC&psc=1"
                  target="_blank" rel="noopener noreferrer"
                  onclick="fbq('trackCustom','ClickToAmazon');">
                 Read on Amazon
@@ -1287,7 +1305,7 @@
               <h3>The Nightmaric Saga<br><em>Episode Two : The Fractured Blonde</em></h3>
               <p>Cassandra wakes under Shadow observation with gaps in her memory and fractures in her perception she can't explain. She slips between locations without moving, rooms shift when she looks away, and entire events vanish from recorded reality.</p>
               <a class="btn flip-btn"
-                 href="https://a.co/d/0hzLPEaw"
+                 href="https://www.amazon.com/Nightmaric-Saga-Episode-Fractured-Blonde-ebook/dp/B0G6XBNFX2?ref_=saga_dp_bnx_dsk_dp"
                  target="_blank" rel="noopener noreferrer"
                  onclick="fbq('trackCustom','ClickToAmazon');">
                 Read on Amazon
@@ -1313,7 +1331,7 @@
               <h3>The Nightmaric Saga<br><em>Episode Three : The Fractured Women</em></h3>
               <p>Cassandra wages a desperate final stand against Persephone while reality burns. Combining cosmic horror, dark humor, military chaos, apocalyptic stakes, and a countdown to extinction.</p>
               <a class="btn flip-btn"
-                 href="https://a.co/d/082eYdCa"
+                 href="https://www.amazon.com/Nightmaric-Saga-Episode-Fractured-Women-ebook/dp/B0GG5XFH8P?ref_=saga_dp_bnx_dsk_dp"
                  target="_blank" rel="noopener noreferrer"
                  onclick="fbq('trackCustom','ClickToAmazon');">
                 Read on Amazon
@@ -1339,7 +1357,7 @@
               <h3>The Nightmaric Saga<br><em>Omnibus</em></h3>
               <p>The complete first arc. Persephone awakens and reality begins to splinter. Reality will never be the same again.</p>
               <a class="btn flip-btn"
-                 href="https://a.co/d/01n0cX11"
+                 href="https://www.amazon.com/Nightmaric-Saga-Complete-Fractured-Arc-ebook/dp/B0GJTZY531/ref=sr_1_1?crid=30HWWU2ZGWJL9&dib=eyJ2IjoiMSJ9.ku1RxMbPsn-_fT4RnxLLCfsBbHK0-TXhS00RQcWow9o0UqTMiO1oqp_XOVGef67iS7MYcf5Ajm5BrXazSto_mCJTGL49J6Dq_PfNc8EyqOt2x56PEpIZIy4ljjFV5ppkhRU4V3LNaNLbT8f6r7sYjw.50RrTb9pZ84EPM1Tn7U7r0qIfKSAGSNxtf-IhYTM5xg&dib_tag=se&keywords=the+complete+fractured+arc&qid=1771947140&sprefix=%2Caps%2C572&sr=8-1"
                  target="_blank" rel="noopener noreferrer"
                  onclick="fbq('trackCustom','ClickToAmazon');">
                 Read on Amazon
@@ -1365,7 +1383,7 @@
               <h3>The Nightmaric Saga<br><em>Special Episode : Syriana</em></h3>
               <p>An immortal soldier guards the last way out of a dying world while an eldritch god watches from the crowd, waiting to see who earns her attention.</p>
               <a class="btn flip-btn"
-                 href="https://a.co/d/0fX3976V"
+                 href="https://www.amazon.com/Nightmaric-Saga-Special-Episode-Syriana-ebook/dp/B0GLL77CDT/ref=pd_sbs_d_sccl_2_1/139-8104516-4312434?pd_rd_w=xsDxX&content-id=amzn1.sym.aa738fbd-ad05-4d11-aae2-04b598db6305&pf_rd_p=aa738fbd-ad05-4d11-aae2-04b598db6305&pf_rd_r=778M5TAN2WFJ4YA98S0B&pd_rd_wg=1sb75&pd_rd_r=057464cf-494c-426f-8cb6-1ea57243f900&pd_rd_i=B0GLL77CDT&psc=1"
                  target="_blank" rel="noopener noreferrer"
                  onclick="fbq('trackCustom','ClickToAmazon');">
                 Read on Amazon
