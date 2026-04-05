@@ -1,597 +1,607 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>The Nightmaric Saga — Free Chapters</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Regicide — Sneak Preview | The Nightmaric Saga</title>
+  <meta name="description" content="Read the opening chapters of The Nightmaric Saga: Regicide — free sneak preview.">
 
-<style>
-  :root{
-    --bg:#0c0c0f;
-    --panel:rgba(255,255,255,0.04);
-    --text:#e8e4dc;
-    --muted:rgba(232,228,220,0.65);
-    --line:rgba(255,255,255,0.10);
-    --accent:#7b2fff;
-  }
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZJF44JXXEL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZJF44JXXEL');
+  </script>
 
-  body{
-    margin:0;
-    font-family: Georgia, serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height:1.75;
-  }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
-  .container{
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 56px 18px 90px;
-  }
+  <style>
+    :root {
+      --black: #05050a;
+      --void: #0a0a12;
+      --text: #e8e4dc;
+      --muted: #9a95a0;
+      --accent: #c2185b;
+      --accent-light: #e91e7a;
+      --violet: #6a3de8;
+    }
 
-  header{
-    padding: 22px 22px;
-    border: 1px solid var(--line);
-    background: var(--panel);
-    border-radius: 14px;
-    margin-bottom: 36px;
-  }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
-  h1{
-    margin: 0 0 8px;
-    font-size: clamp(28px, 4vw, 44px);
-    letter-spacing: -0.02em;
-  }
+    body {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      background: var(--black);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+    }
 
-  .sub{
-    margin:0;
-    color: var(--muted);
-    font-size: 15px;
-  }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.55;
+    }
 
-  .chapter{
-    margin-top: 42px;
-    padding: 26px 22px;
-    border: 1px solid var(--line);
-    background: rgba(255,255,255,0.02);
-    border-radius: 14px;
-  }
+    /* ── NAV ── */
+    .nav {
+      padding: 20px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      position: sticky;
+      top: 0;
+      background: rgba(5,5,10,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 100;
+    }
 
-  .chapter h2{
-    margin: 0 0 12px;
-    font-size: 20px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-  }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
 
-  .byline{
-    margin: 0 0 20px;
-    color: var(--muted);
-    font-style: italic;
-  }
+    .nav-logo:hover { color: var(--accent-light); }
 
-  p{ margin: 0 0 14px; }
-  .scene-break{
-    border: 0;
-    height: 1px;
-    background: var(--line);
-    margin: 26px 0;
-  }
+    .nav-cta {
+      font-family: 'Syne', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #fff;
+      padding: 10px 20px;
+      border: 1px solid rgba(194,24,91,0.5);
+      border-radius: 2px;
+      text-decoration: none;
+      transition: background 0.3s;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-  .cta{
-    margin-top: 48px;
-    padding: 26px 22px;
-    border: 1px solid var(--line);
-    background: var(--panel);
-    border-radius: 14px;
-  }
+    .nav-cta:hover { background: rgba(194,24,91,0.2); }
 
-  .cta h3{
-    margin: 0 0 10px;
-    font-size: 20px;
-  }
+    /* ── HERO ── */
+    .preview-hero {
+      padding: 80px 32px 60px;
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+      position: relative;
+    }
 
-  .cta p{ color: var(--muted); }
+    .preview-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, var(--accent-light), transparent);
+    }
 
-  .btn{
-    display:inline-block;
-    margin-top: 12px;
-    padding: 12px 16px;
-    border-radius: 10px;
-    background: var(--accent);
-    color: #fff;
-    text-decoration:none;
-    font-weight: 700;
-  }
+    .eyebrow {
+      font-family: 'Syne', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 20px;
+      display: block;
+    }
 
-  .btn:hover{ filter: brightness(1.05); }
-</style>
+    .preview-hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(36px, 7vw, 72px);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: #fff;
+      margin-bottom: 16px;
+      animation: none;
+      opacity: 1;
+      text-shadow: none;
+    }
+
+    .preview-hero h1 em {
+      font-style: italic;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      color: var(--accent-light);
+      display: block;
+      font-size: 1.05em;
+      background: none;
+      padding: 0;
+      margin-top: 4px;
+      text-shadow: none;
+    }
+
+    .preview-hero p {
+      font-size: clamp(15px, 2vw, 17px);
+      font-weight: 300;
+      color: rgba(232,228,220,0.5);
+      margin-top: 20px;
+      line-height: 1.7;
+    }
+
+    /* ── PROSE ── */
+    .prose-wrap {
+      max-width: 660px;
+      margin: 80px auto 0;
+      padding: 0 32px 120px;
+    }
+
+    .chapter-block {
+      margin-bottom: 80px;
+    }
+
+    .chapter-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+      display: block;
+      opacity: 0.7;
+    }
+
+    .chapter-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(18px, 3vw, 28px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .chapter-pov {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(232,228,220,0.35);
+      letter-spacing: 0.08em;
+      margin-bottom: 36px;
+      display: block;
+    }
+
+    .chapter-divider {
+      width: 40px;
+      height: 1px;
+      background: rgba(194,24,91,0.4);
+      margin: 0 0 36px 0;
+    }
+
+    .prose-wrap p {
+      font-size: clamp(17px, 2.2vw, 20px);
+      font-weight: 300;
+      line-height: 1.85;
+      color: rgba(232,228,220,0.82);
+      margin-bottom: 1.4em;
+    }
+
+    .prose-wrap p strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .prose-wrap p em {
+      font-style: italic;
+      color: rgba(232,228,220,0.9);
+    }
+
+    .scene-break {
+      text-align: center;
+      margin: 48px 0;
+      color: var(--accent);
+      letter-spacing: 0.4em;
+      font-size: 12px;
+      opacity: 0.5;
+    }
+
+    /* ── END CTA ── */
+    .end-cta {
+      max-width: 660px;
+      margin: 0 auto;
+      padding: 0 32px 120px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      padding-top: 80px;
+    }
+
+    .end-cta .eyebrow { margin-bottom: 16px; }
+
+    .end-cta h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(28px, 5vw, 52px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 16px;
+      color: #fff;
+    }
+
+    .end-cta h2 em {
+      font-style: italic;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      color: var(--accent-light);
+    }
+
+    .end-cta p {
+      font-size: clamp(15px, 2vw, 17px);
+      font-weight: 300;
+      color: rgba(232,228,220,0.5);
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-block;
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #fff;
+      padding: 18px 44px;
+      border: 1px solid rgba(194,24,91,0.6);
+      border-radius: 2px;
+      background: transparent;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.3s, border-color 0.3s;
+      text-decoration: none;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--violet) 100%);
+      transform: translateX(-101%);
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+      z-index: -1;
+    }
+
+    .btn:hover::before { transform: translateX(0); }
+    .btn:hover { border-color: transparent; }
+    .btn:active::before { transform: translateX(0); }
+
+    .btn-ghost {
+      border-color: rgba(232,228,220,0.18);
+      color: rgba(232,228,220,0.65);
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 600px) {
+      .nav { padding: 16px 20px; }
+      .preview-hero { padding: 60px 20px 50px; }
+      .prose-wrap { padding: 0 20px 80px; margin-top: 60px; }
+      .end-cta { padding: 60px 20px 80px; }
+      .btn-group { flex-direction: column; align-items: stretch; }
+      .btn { text-align: center; }
+    }
+  </style>
 </head>
 
 <body>
-  <div class="container">
 
-    <header>
-      <h1>✦ You’re in.</h1>
-      <p class="sub">
-        Here are the first chapters of <strong>The Nightmaric Saga</strong>.
-        Bookmark this page — and check your inbox for future dispatches.
-      </p>
-    </header>
-
-    <section class="chapter">
-      <h2>Chapter One — The Start of the Rest of My Boring Life</h2>
-      <p class="byline">Cassandra</p>
-
-      <p>“Go. Live.”</p>
-      <p>To some, it’s a scream. To others, a war cry. It crosses worlds and rattles something half-buried in dreams until an exhausted college girl bolts awake.</p>
-
-      <p>My eyes snap open, and I lurch upright so fast the room tilts. My heart hammers as I gasp and swallow a scream. I clamp my hands over my chest as I try to pin my pulse down.</p>
-      <p>A spike of pain drills behind my eyes.</p>
-      <p>Hangover without the fun.</p>
-      <p>Or maybe it’s another death dream.</p>
-      <p>It’s hard to tell these days.</p>
-
-      <p>The clock beside my bed glows red: 6:00 a.m.</p>
-
-      <p>I fall back into my pillow, but the echo of that voice refuses to fade. It sits behind my eyes like a hot coin.</p>
-      <p>I already know I won’t get back to sleep.</p>
-
-      <p>“Fine,” I mutter sleepily. “We start early.”</p>
-
-      <p>I roll out of bed, pull on jeans, a T-shirt, a black hoodie, and drag my hair into something ponytail-adjacent. Backpack. Shoulder. Door.</p>
-      <p>Muscle memory and resignation.</p>
-
-      <hr class="scene-break" />
-
-      <p>Outside, the quad is almost empty. A few students drift across the paths, hoodies up, and caffeine circulating where blood should be.</p>
-      <p>I cut across the wet grass as dew soaks my sneakers.</p>
-      <p>Before sunrise, the rules feel optional.</p>
-
-      <p>In a few months, I’m supposed to “enter society”. People say it like I’m being knighted. No safety net. No reset button. Just me against the world.</p>
-      <p>Like that’s new.</p>
-
-      <p>My shoulders ache under the straps of my backpack. Could be the weight. Might be the constant grind of pretending everything is fine.</p>
-
-      <p>A corn muffin would fix all this.</p>
-      <p>Today deserves that small joy.</p>
-
-      <p>The cafeteria doors hiss shut behind me. Trapping warmth and grease in the air. Pancakes glisten under heat lamps. Oil crackles somewhere in the back. The general aroma of breakfast food clings to everything.</p>
-
-      <p>It’s chaos in a comforting way. Trays scraping, metal clinking, and low chatter humming through the room.</p>
-
-      <p>I head straight for the basket of muffins. Freshly out of the oven, the heat pours off them. Sugar and butter hang thick in the air.</p>
-
-      <p>My hand drifts toward a blueberry muffin. For a moment, it feels like it breathes under my fingers.</p>
-      <p>I blink.</p>
-      <p>My hand closes around a corn muffin instead.</p>
-
-      <p>“Cassy!”</p>
-
-      <p>Her voice hits as a glass dropped on tile. I flinch, pulse spiking, and turn.</p>
-
-      <p>Lillia barrels into me mid-hug before my brain catches up. She’s all red skirt, brown jacket, and warm arms.</p>
-      <p>For someone so small, her hugs feel like they’re trying to hold the world together.</p>
-
-      <p>As always, I freeze when someone decides physical contact is mandatory. You’d think I’d have adapted by now.</p>
-      <p>I have not.</p>
-
-      <p>“Morning to you, too,” I mumble into her shoulder.</p>
-
-      <p>She pulls back, grinning. “Daily corn muffin again. Keep this up, and you’ll turn into one.”</p>
-      <p>“Honestly? I’ve had worse outcomes.”</p>
-
-      <p>She laughs, bright and cracked. An eternal optimist, who still has that stubborn sunshine that she refuses to let fade.</p>
-
-      <p>Next to her, I’m a storm cloud in sneakers with my hair yanked back.</p>
-      <p>At least the muffin is warm.</p>
-
-      <p>“So, what’s the plan for this glorious day?” she asks, fishing a Granny Smith out of her jacket pocket and taking a loud bite.</p>
-      <p>The crunch echoes, and now I want an apple too.</p>
-
-      <p>“Garrison’s class is in fifteen. Then I have to head into the city and run errands. You?”</p>
-
-      <p>“Day off,” she says, like it’s a blessing. “Want company?”</p>
-
-      <p>“Sure. We can hit Julio’s after.”</p>
-
-      <p>I crush the muffin wrapper and bank it into the trash.</p>
-      <p>Small victories.</p>
-
-      <p>“I’ll meet you in the quad after class,” I say, pushing back out into the cold.</p>
-      <p>“It’s a date!” she calls as the doors swing shut.</p>
-
-      <p>Outside, the air bites.</p>
-      <p>For a second, I wonder, like I always do.</p>
-      <p>What horror the day has lined up for me.</p>
-
-      <hr class="scene-break" />
-
-      <p>There is something about city air.</p>
-      <p>The smog, noise and that constant static of possibility.</p>
-      <p>As anything could happen, but probably won’t.</p>
-
-      <p>I sit on a park bench, smoothie in hand, and watch the city ecosystem at work.</p>
-
-      <p>Across the path, a little girl fights with an ice cream cone and loses. Most of it ends up on her cheeks and shirt. Her smile stays pure as sunlight.</p>
-
-      <p>Her parents flank her. A woman in a blue sundress with red roses. Her father is in a worn button-up and khakis. Ordinary, warm, and annoyingly perfect.</p>
-
-      <p>I blink for a second as something gets in my eye.</p>
-
-      <p>One of the men picks up their daughter and rests her on his shoulders. The little girl just laughs as he dances around her.</p>
-
-      <p>The sight hits harder than it should. Something loosens in my chest, and then tightens again.</p>
-
-      <p>I would be lying if I said I did not want that. The safe kind of boring. People who wait for you. A place that is actually mine and not just the cheapest room within bus distance.</p>
-
-      <p>But that kind of fate belongs to other people. I have made my peace with that.</p>
-      <p>Mostly.</p>
-
-      <p>“There you are, Cassy. Look at you with your little smoothie.”</p>
-
-      <p>Lillia’s voice skips across the moment and shatters it. I huff a laugh.</p>
-
-      <p>“I was enjoying the peace and quiet,” I say. “You scared it off.”</p>
-
-      <p>She drops onto the bench beside me. “And you got a smoothie without me,” Lillia places her hand over her mouth, feigning offense. “The betrayal!”</p>
-
-      <p>Her acting pulls real laughter out of me. “You were late, and I got thirsty.”</p>
-
-      <p>Truth is, Garrison’s class dug under my skin again.</p>
-
-      <p>The images of a church on fire and the screams.</p>
-      <p>Those dark, glowing red eyes spouting a terrible line.</p>
-
-      <p>“Who are we to deny you meeting your precious god faster?” It says, with a cruel and indifferent chuckle.</p>
-
-      <p>Even remembering it tightens my stomach.</p>
-
-      <p>“Garrison talked about the Purges again, didn’t he?” Lillia says, already knowing the answer.</p>
-      <p>“Yeah. Another field trip down misery lane.”</p>
-
-      <p>“It is strange,” she says. “That the war feels like yesterday, and it was a few hundred years ago.”</p>
-
-      <p>I do not answer.</p>
-
-      <p>I don’t tell her how something in me leans forward when the old footage plays. Not because I enjoy it, but because I need to understand it. I rewind the worst clips. I study the formations, the decisions, the way chaos hardened into procedure. The point where mercy stopped fitting into the equation.</p>
-
-      <p>That part of me scares me.</p>
-      <p>The rest of me resents that fear.</p>
-
-      <p>“Yeah,” I say at last. “Weird.”</p>
-
-      <p>She squeezes my shoulder. I let her.</p>
-
-      <p>The Shadow War is supposed to be history now. Sanitized. Mythologized. Schoolbooks call it mankind’s glorious stand against its own creations.</p>
-      <p>Proof that we stayed in control.</p>
-
-      <p>The truth, the fragments that survived the censors, is not glorious. It’s obscene. People turned into weapons. Choices made too efficiently. The Original Seven. Darkness. Things a normal mind should recoil from.</p>
-
-      <p>I do recoil.</p>
-      <p>I just don’t look away.</p>
-
-      <p>“Cassy. Cassandra. Hey.”</p>
-      <p>Lillia snaps me out of the spiral. She waves a hand in front of my face.</p>
-
-      <p>“I fell into the rabbit hole again, didn’t I?”</p>
-      <p>“You swan-dived in,” she says. “Do you even remember what I was saying?”</p>
-      <p>“Some of it,” I lie.</p>
-
-      <p>Her look says she knows, but she lets it go. “Come on. Errands. Julio’s. Carbs. Move.”</p>
-
-      <p>She stands and offers her hand. I take it and let her pull me up.</p>
-
-      <p>I glance back at the family.</p>
-
-      <p>The girl is on the ground now, still wearing her ice cream on her face as she smiles. Her father kneels beside her with a napkin. Her mother laughs at something I cannot hear.</p>
-
-      <p>Perfect again.</p>
-      <p>Too perfect.</p>
-
-      <p>A shadow drapes over the park and smothers the sunlight. A low whistle threads through the air. Long and rising.</p>
-
-      <p>“Do you hear that?” Lillia asks.</p>
-      <p>“Yeah. And it is getting louder.”</p>
-
-      <p>We both look up.</p>
-
-      <p>Something enormous tears through the clouds and falls fast. Wrong shape for a civilian shuttle. Wrong angle.</p>
-      <p>Wrong everything.</p>
-
-      <p>For one suspended second, I stay still.</p>
-
-      <p>Then the world goes white.</p>
-      <p>Then black.</p>
-    </section>
-
-    <section class="chapter">
-      <h2>Chapter Two — Everything Got Very Hot</h2>
-      <p class="byline">Cassandra</p>
-
-      <p>Heat wakes me.</p>
-      <p>Not gentle warmth. Radiant, prickling heat pressed against my face. It smells like gasoline and electrical fire, and cooked metal.</p>
-
-      <p>I blink grit out of my eyes.</p>
-
-      <p>The sky is wrong.</p>
-      <p>The park is gone.</p>
-
-      <p>No, it’s still here, just buried under ruin.</p>
-
-      <p>Trees are ripped up, benches splintered, and paths cracked open.</p>
-      <p>Smoke drifts through the wreckage as it has nowhere to go.</p>
-
-      <p>Lillia.</p>
-      <p>She had been right beside me.</p>
-
-      <p>“Lillia?” I say, my voice dry.</p>
-
-      <p>I try to stand. My body shuts that down fast.</p>
-      <p>Pain flares through every joint and knocks me flat.</p>
-
-      <p>“Okay, Cass,” I mutter. “Let’s try that one more time.”</p>
-
-      <p>I plant my hands, grit my teeth, and push. Pain roars through me.</p>
-      <p>I get upright anyway. The world tilts, and then steadies into something jagged and wrong.</p>
-
-      <p>A scream cuts through the haze.</p>
-      <p>High and desperate.</p>
-
-      <p>“Please don’t let that be the mom,” I whisper, already knowing it is.</p>
-
-      <p>I limp toward the sound.</p>
-
-      <p>The woman in the blue sundress is on her knees. The roses are shredded and blackened. Her arms are locked around a small, limp body.</p>
-
-      <p>“Someone, please. She is barely breathing,” Her voice cracks on every word.</p>
-      <p>Tears fall into ash.</p>
-
-      <p>I want to help, I do, but Lillia is out here somewhere.</p>
-      <p>She was right beside me and couldn’t be far.</p>
-
-      <p>The park is a massacre.</p>
-      <p>Smoke and charred metal litter the place.</p>
-      <p>People are wandering around as they try to comprehend what they’re seeing.</p>
-
-      <p>A fallen tree trunk blocks part of the path. It’s burnt through, the wood curled upward by the heat.</p>
-
-      <p>“Over here!” Someone shouts. “Someone’s trapped!”</p>
-
-      <p>I should keep searching for Lillia. That’s all that matters more than anything. But I cannot just walk past someone pinned under debris and pretend I did not hear it.</p>
-
-      <p>What would Lillia do?</p>
-      <p>She would help.</p>
-
-      <p>With a sigh, I jog toward the voice.</p>
-
-      <p>A slab of broken concrete has someone pinned. Two men are already there, straining against it.</p>
-
-      <p>“If we all get on this side, we can slide it up,” one pants.</p>
-      <p>In theory.</p>
-      <p>In practice, we will see.</p>
-
-      <p>We fan out along the edge. The surface is cold and rough under my palms.</p>
-
-      <p>“Okay, on three. One, two, three.”</p>
-
-      <p>We heave. My arms scream. The slab shifts, groaning inch by inch. Someone dives under and drags the trapped body free.</p>
-
-      <p>“Got them,” they say, through several breaths.</p>
-
-      <p>We let the concrete slam back and stumble away, our lungs burning.</p>
-
+  <!-- NAV -->
+  <nav class="nav">
+    <a class="nav-logo" href="/">The Nightmaric Saga</a>
+    <a class="nav-cta" href="https://www.amazon.com/dp/B0GJTZY531" target="_blank" rel="noopener noreferrer">
+      Read the Series
+    </a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="preview-hero">
+    <span class="eyebrow">Sneak Preview — Coming Soon</span>
+    <h1>The Nightmaric Saga<br><em>Regicide</em></h1>
+    <p>The opening chapters of Book 4. Kingdoms burn. Timelines fracture. And Cassandra still can't catch a break.</p>
+  </div>
+
+  <!-- PROSE -->
+  <div class="prose-wrap">
+
+    <!-- PROLOGUE -->
+    <div class="chapter-block">
+      <span class="chapter-label">Prologue</span>
+      <h2 class="chapter-title">My Beloved Kingdom</h2>
+      <span class="chapter-pov">Present — Anastasia</span>
+      <div class="chapter-divider"></div>
+
+      <p>I watch my beloved kingdom burn.</p>
+      <p>The flames dance below the skyline as smoke blots out what was once a pristine, starry sky. My hand rests on the window as I stare at my reflection in the glass.</p>
+      <p>A tear slips from my eye and falls to the marble tile. I watch it as it lands with a soft plop. Like raindrops, more follow. Soon, there is a wall of puddles of my tears on the floor.</p>
+      <p>I only have myself to blame for what is happening to my beloved Siyama.</p>
+      <p>It started when the violet-eyed woman strolled onto my court.</p>
+      <p>I cannot stop thinking about how she acted like she owned the place, and everyone else was just a guest. At the time, I thought I was only humoring her. I told myself she was just arrogant and egotistical.</p>
+      <p>Even her attire made her look like a fool. A brown denim jacket, a bright red dress, and an ice cream cone in her hand. I could not take her seriously.</p>
+      <p>In hindsight, I was the fool.</p>
+      <p>"Evening, Your Highness and higher court of Siyama!" she yelled, curtsy and all.</p>
+      <p>I could tell she was mocking royal protocol. Or maybe she truly thought it was beneath her station and wanted to rub that fact in our faces. At the time, I could not tell which.</p>
+      <p>"And evening to…" I began. I did not yet know who this despicable woman was, or even her name.</p>
+      <p>Now, it is all I can hear as I stare at my burning kingdom.</p>
+      <p>"Persephone," she said. She bowed, took a lick of her ice cream, and looked straight at me with a cruel smile. "The pleasure is all mine to be your honored guest here today!"</p>
+      <p>She rose, twirled once, and smiled at the crowd on either side of her.</p>
+      <p>Persephone knew exactly how to play to a room. I caught a few members of my council smiling, then coughing to hide their laughter.</p>
+      <p>If only I had seen the signs then.</p>
+      <p>Perhaps all of this could have been prevented. At least mitigated.</p>
+      <p>"What brings you before my throne?" It was a legitimate question at the time. I knew little about the war engulfing the galaxy, only that it was happening and growing fast. Perhaps I was naive to believe it would never spill onto Siyama.</p>
+      <p>After all, why would anyone care about a world as regal as Siyama?</p>
+      <p>"I come with a proposition." Persephone twirled again, the hem of her dress sweeping with the motion. "Sever ties with the decrepit Galactic Alliance, and join me."</p>
+      <p>She stopped mid-turn and took another lick of her ice cream, as if she had not just spoken treason in my hall.</p>
+      <p>The room erupted into whispers.</p>
+      <p>None of us, myself included, could believe what she had just said.</p>
+      <p>Leave the Galactic Alliance?</p>
+      <p>It was out of the question.</p>
+      <p>Then she delivered the real strike.</p>
+      <p>"Did I say the Galactic Alliance?" Her gaze slid past me, not to the throne, but to my Higher Council. She wore an all-knowing smile. "I meant from the thumb of the Shadows, and their tyrannical leaders."</p>
+      <p>The hall fell silent.</p>
+      <p>It is no secret that distrust runs deep between Normals and Shadows. Entire libraries are filled with the atrocities each side has inflicted on the other.</p>
+      <p>Even then, I knew exactly what Persephone was doing.</p>
+      <p>"Out!" I yell, and I hate how late the word arrives. I should have said it before she spoke her poison in my court.</p>
+      <p>My guards lower their pikes and surge toward her.</p>
+      <p>Persephone raises both hands and feigns shock. I have little doubt my guards are even a threat to her.</p>
+      <p>"Ok, ok. I leave. Jeez." She backs away with slow, theatrical steps. "Just keep my offer in mind, ok?"</p>
+      <p>Again, she does not look at me. She looks at my Higher Council.</p>
+      <p>In particular, she looks at my cousin, my second in command.</p>
+      <p>It is in that moment I understand how dangerous Persephone truly is.</p>
+
+      <div class="scene-break">✦ ✦ ✦</div>
+
+      <p>Nothing happens after that.</p>
+      <p>For weeks, Siyama stays normal. Calm. Uneventful.</p>
+      <p>Then the reports begin.</p>
+      <p>People with black veins attack citizens in the streets.</p>
+      <p>Doll-like beings, too smooth and wrong, slice through law enforcement as if bodies are paper.</p>
+      <p>Entire towns vanish overnight.</p>
+      <p>And on the walls of the abandoned buildings, painted in bold purple letters, the message repeats.</p>
+      <p><em>Our love is for her.</em></p>
+      <p>Even my court is not immune.</p>
+      <p>During a council meeting, one of my advisors stands so abruptly his chair scrapes the floor. He screams, and the sound is not fully human.</p>
+      <p>His body tears itself open. Flesh splits. Metal gleams beneath it. Something inside him unfolds like a machine learning how to wear a man.</p>
+      <p>He takes several of my people before the guards put him down.</p>
+      <p>There is no denying it now.</p>
+      <p>The war has reached Siyama.</p>
+      <p>And I am to blame.</p>
+      <p>My present and past self, anyway.</p>
+
+      <div class="scene-break">✦ ✦ ✦</div>
+
+      <p>I stand shoulder to shoulder with my army as a queen should when her realm is under assault. The capital has become a war zone. Smoke hangs low. The streets are scarred. Every alley feels like a mouth.</p>
+      <p>No one can be trusted. Nothing can be taken at face value.</p>
+      <p>To say morale is low is an understatement. Even I struggle to convince myself we can hold.</p>
+      <p>The enemy is relentless.</p>
+      <p>"Here they come!" I shout, raising my blade.</p>
+      <p>Against my royal guard's advice, I am on the front line. I want to look these horrors in the eye and destroy them myself.</p>
+      <p>A mixed wave charges us. Black veined bodies. Silicone dolls. Abominations warped by machine and something worse. Their roar rattles my bones.</p>
+      <p>Their numbers dwarf ours.</p>
+      <p>"Fire!"</p>
+      <p>A wall of bullets tears past my ears.</p>
+      <p>The front line of the horde collapses. Bodies tumble. The ones behind them do not slow. They trample their own dead and keep coming.</p>
+      <p>"Raise your blades!" I yell.</p>
+      <p>In unison, my soldiers lift steel. They will not admit it, but they are terrified. I do not blame them. They would not be human if they were not.</p>
+      <p>I brace for the familiar sound of bodies and metal colliding.</p>
+      <p>Then I see a blue blur.</p>
+      <p>A giant scythe cuts past my head.</p>
+      <p>It slams into the oncoming wave and obliterates it.</p>
+      <p>For a heartbeat, I simply stare.</p>
+      <p>The being moves through the horrors with ease, as if they are nothing more than obstacles on a road.</p>
+      <p>Blue cloak. Blue highlights.</p>
+      <p>More blue-cloaked figures appear inside our lines as if they were always there. Their scythes carve down the remaining attackers until the street is quiet again.</p>
+      <p>The blue-cloaked figure walks toward me.</p>
+      <p>A blue glow washes over us. Several soldiers wince and cover their eyes, but they cannot look away.</p>
+      <p>Then I see she is a woman.</p>
+      <p>She rests a hand on one of my men's shoulders and looks down at him. Her smile steadies him. He stares back, speechless.</p>
+      <p>"You all did well here," she says. She looks across my exhausted troops without a hint of arrogance. "My forces and I will take it from here."</p>
+      <p>As if on cue, the cloaked figures march forward into the city.</p>
+      <p>The woman steps closer to me and bows her head.</p>
+      <p>"My Majesty, it is probably best you leave the front line," she says, lifting her gaze to meet mine.</p>
+      <p>"Perhaps, Theresa, you are correct," I reply, watching for any flicker of surprise.</p>
+      <p>She chuckles, then smiles.</p>
+      <p>"My reputation does precede me."</p>
+      <p>She takes my hand with an ease that feels earned. "We will go together. We have much to discuss."</p>
+
+      <div class="scene-break">✦ ✦ ✦</div>
+
+      <p>So now I stand once again at a window, watching Siyama burn, while a foreign force fights to save it.</p>
+      <p>The deja vu tastes like ash.</p>
+      <p>A door opens behind me, snapping me out of my thoughts.</p>
       <p>I turn.</p>
-      <p>The path behind us is blocked again, now by a charred wooden beam.</p>
-
-      <p>The person we pulled out wears a uniform. Military cut, scorched, and torn. Not the police. Not militia. Something else.</p>
-
-      <p>His skin is wrong. Not burned. Warped. Like it is moving under the soot.</p>
-
-      <p>Not from the crash.</p>
-      <p>Not normal.</p>
-
-      <p>Later problem. Right now: Lillia.</p>
-
-      <p>“I have to go,” I say, already turning.</p>
-
-      <p>Through the haze, a familiar shape forms. Torn skirt. Ripped blouse. Hair tangled and wild.</p>
-
-      <p>“Lillia.”</p>
-
-      <p>I sprint and watch her drop to the ground.</p>
-
-      <p>“Lillia, hey. Look at me. Are you okay?”</p>
-
-      <p>She is upright somehow. Shaking. Breathing too fast. Scratches and cuts, but no broken bones. Relief hits so hard my eyes sting.</p>
-
-      <p>Then she looks at me.</p>
-
-      <p>Her irises are not brown anymore.</p>
-      <p>Violet. Faint and swirling, like smoke trapped in glass.</p>
-
-      <p>“Do you hear her too?” she whispers.</p>
-
-      <p>“Who?” I ask, but she is already collapsing. Her body folds into my chest.</p>
-    </section>
-
-    <section class="chapter">
-      <h2>Interlude — The Lich Looks at the Board</h2>
-      <p class="byline">Arcana</p>
-
-      <p>“And so it begins,” I say, swirling red wine in a glass that costs more than this planet’s median income.</p>
-
-      <p>Crash reports crawl across the holo-screen behind me. Names. Numbers. Speculation. The casualty estimate settles exactly where I wanted it. High enough to spark panic. Low enough that none of the wrong people start asking the right questions.</p>
-
-      <p>She was not on the ship. I made sure of that.</p>
-
-      <p>I taste iron beneath the fruit.</p>
-
-      <p>Faith in manipulation or playing god as some would say. I call it patience.</p>
-
-      <p>Worlds never change on their own. They have to be shoved.</p>
-
-      <p>The footage loops. Sirens. Smoke. A face flickers in the margin. Her friend. The one who isn’t supposed to be anywhere near this board.</p>
-
-      <p>I sigh.</p>
-
-      <p>“Well,” I murmur, “let us see what you do with this one.”</p>
-
-      <p>“Are you going to keep monologuing or actually play your turn, Arcana? Some of us have lives.”</p>
-
-      <p>Lilith’s voice cuts through the candlelight like a knife meant for smiling instead of killing. The white feathers of her wings arch behind her, catching the glow.</p>
-
-      <p>I do not look up from my hand. “Patience. I know it is not one of your virtues, but try.”</p>
-
-      <p>“You talk like you are winning,” she says. She draws a card without breaking eye contact.</p>
-
-      <p>“I always talk like I am winning,” I say. “Half the time it is even true.”</p>
-
-      <p>She exhales a half-laugh, half-growl. “You are insufferable.”</p>
-
-      <p>“And yet,” I say, placing my next card with deliberate calm, “you keep coming back.”</p>
-
-      <p>Her gaze flicks to the screen, then back to the table. “You think she will bite? Crashes happen every day. The news cycle forgets them in forty-eight hours.”</p>
-
-      <p>“Maybe,” I say. “Maybe she ignores it. Maybe she imprints the wrong soul and turns another universe into a half-finished tragedy.” I fan my pieces across the table. “But she will feel it. She always does.”</p>
-
-      <p>I reveal my hand.</p>
-
-      <p>Infinite loop. Clean and Cruel.</p>
-
-      <p>Lilith groans and throws her cards aside. “I hate you.”</p>
-
-      <p>“You love the attempt,” I say as I gather the cards. “Again?”</p>
-
-      <p>“Obviously.” She is already reshuffling. “One of these centuries, you are going to misplay.”</p>
-
-      <p>I glance at the crash feed while the deck bridges through her fingers.</p>
-
-      <p>“Try to keep up,” I whisper.</p>
-    </section>
-
-    <section class="chapter">
-      <h2>Chapter Three — Just Another Day in Politics</h2>
-      <p class="byline">Sally Roxian</p>
-
-      <p>“I need a new coffee place,” I mumble, sipping something that used to be coffee and now tastes like burnt regret. “The one on East Eleven has given up.”</p>
-
-      <p>I know I’m lying.</p>
-      <p>I’ll be back there tomorrow at seven thirty like always. Routine looks like stability if you squint.</p>
-
-      <p>Traffic slides past in streaks of light. People drift along the sidewalk with their eyes glued to holoscreens. Entire worlds flickering inches from their faces. For half a block, my steps sync with theirs. Accidental unity. Then the rhythm breaks, and I am alone again.</p>
-
-      <p>The Capitol steps rise ahead, white and self-important.</p>
-      <p>“Fresh hell,” I mutter, tossing the empty cup as I head inside.</p>
-
-      <p>The Hall of Law and Order smells like polish and recycled air. Security scanners thrum softly.</p>
-
-      <p>“Sally. How was your weekend?” Alan calls from his post. Round, cheerful, and flirting through bad jokes and worse puns. Harmless and almost comforting.</p>
-
-      <p>“Oh, you know,” I say. “Read briefs, prepped motions, watched half a season of some trash show. Wild times.”</p>
-
-      <p>He laughs. The marble makes it echo.</p>
-
-      <p>If he knew who my clients were, he wouldn’t be laughing. Not out of fear, but out of instinct. Normals like him barely count as real to most of that roster.</p>
-
-      <p>I ride the elevator up, catch my reflection in the mirrored wall, and spot another gray hair.</p>
-
-      <p>Fantastic, the weekly salon visits have just become bi-weekly. At this rate, I’ll be grey by forty.</p>
-
-      <p>My office is nice and homey as I drop onto my office chair, spin once to bleed off irritation, and pull a file toward me.</p>
-
-      <p>A complaint against one of Veronica’s free clinics.</p>
-
-      <p>Technically not hers, legally distant, and realistically obvious.</p>
-
-      <p>Some mid-level officials are furious that people are receiving treatment without paying enough for it.</p>
-
-      <p>I flag it for an associate with very precise instructions: fix it. Put the fear of the Saint in them if necessary.</p>
-
-      <p>I am halfway through another file when someone knocks.</p>
-      <p>No one knocks.</p>
-      <p>Not for me.</p>
-
-      <p>“Come in,” I say.</p>
-
-      <p>The door opens.</p>
-
-      <p>I see the gray skin, red irises. And feel my mouth go dry.</p>
-
-      <p>Shadows do not come to me, I go to them.</p>
-      <p>That is the rule.</p>
-
-      <p>This one wears a pressed suit and tie. No armor. No cloak. No theatrics. If you ignored the eyes and the skin, he could pass for any forgettable bureaucrat.</p>
-
-      <p>“Relax, Ms. Roxian,” he says with a polite smile. “You are not hallucinating. A well-dressed Shadow is indeed standing in your office.”</p>
-
-      <p>I stand, because sitting feels rude even though they do not care. My knees complain. “Do you have a name?”</p>
-
-      <p>“For our purposes, Alex will do,” he says. “And you can call me whatever sells the fiction. May I?”</p>
-
-      <p>He offers a folder.</p>
-      <p>I take it and flip it open.</p>
-
-      <p>“You are shitting me,” I say before my brain can stop my mouth.</p>
-
-      <p>His smirk sharpens. “Darkness said you would be refreshing.”</p>
-
-      <p>If that is a compliment, it is the most backhanded one I’ve received this month.</p>
-
-      <p>I scan the pages again.</p>
-
-      <p>“Quarantine breach,” I say, pointing to a single paragraph. “Of this.”</p>
-
-      <p>“Yes,” he replies. “We had it locked down so tightly that Tartarus complained about the competition. Unfortunately, even chains rust.”</p>
-
-      <p>“How bad?” I ask, pacing around. “Spare me the poetic half-truths. I bill by the hour.”</p>
-
-      <p>He leans against the door frame as if we are discussing a zoning permit instead of a possible world-ending event.</p>
-
-      <p>“If it behaves as it did on Cassandrea,” he says, “emergency services collapse first. Then the infrastructure. Then, global systems. If no one intervenes, it spreads off-world.”</p>
-
-      <p>“You stopped it before,” I say. “That is what this file claims.”</p>
-
-      <p>“With great sacrifice,” he says quietly. “We lost a lot of good people.”</p>
-
-      <p>For a breath, his eyes go distant. Then the mask slides back into place.</p>
-
-      <p>“What do you want from me?” I ask, dropping into my chair again. The file slaps against the desk.</p>
-
-      <p>“You will be our Normal liaison,” he says. “Point of contact. The people of Elispa Six will tell you what they are doing, and you will tell us.”</p>
-
-      <p>“And you?” I ask. “What will you be doing while I play spy and drown in paperwork?”</p>
-
-      <p>“Handling it,” he says. “Our best are already en route.”</p>
-
-      <p>The word hangs between us.</p>
-
-      <p>He straightens. “You have a lot to read. I suggest you begin.”</p>
-
-      <p>He walks out without waiting for agreement.</p>
-
-      <p>The door clicks shut.</p>
-
-      <p>I stare at the word stamped in red across the folder.</p>
-
-      <p><strong>QUARANTINE BREACH.</strong></p>
-
-      <p>If this is what they call handled, we’re already screwed.</p>
-    </section>
-
-    <section class="cta">
-      <h3>Continue the Omnibus</h3>
-      <p>Persephone quietly watches, waiting to see how everything unfolds</p>
-      <a class="btn" href="https://a.co/d/01n0cX11" target="_blank" rel="noopener noreferrer">
-        Read on Amazon
-      </a>
-      <br><strong>or</strong></br>
-      <h3>Continue with Episode One - The Fractured Girl</h3>
-      <a class="btn" href="https://a.co/d/0gkNfLFZ" target="_blank" rel="noopener noreferrer">
-        Read on Amazon
-      </a>
-    </section>
+      <p>A young woman enters, college age if I had to guess. Short black hair, disheveled. One hand tucked into the pocket of a black hoodie. The other holds a box of muffins.</p>
+      <p>She walks up and smiles as if she belongs here.</p>
+      <p>"Want a muffin?" she asks, extending her hand.</p>
+    </div>
+
+    <!-- CHAPTER ONE -->
+    <div class="chapter-block">
+      <span class="chapter-label">Chapter One</span>
+      <h2 class="chapter-title">Breakfast with a Queen</h2>
+      <span class="chapter-pov">Present — Cassandra</span>
+      <div class="chapter-divider"></div>
+
+      <p>If you'd told me a few months ago that I'd be eating a corn muffin with an actual queen — that I, of all people, would even be in the same room as royalty — I'd have said you were insane.</p>
+      <p>Yet here I am.</p>
+      <p>Sitting across from a queen. Her white hair neatly hanging on the shoulders of her black dress, and icy blue eyes looking down at her muffin. Making small talk with her. And watching her world burn at the hands of my best friend, who'd become a genocidal despot.</p>
+      <p>Probably best to leave that part out of the conversation.</p>
+      <p>"So, uh… Cassandra. That is your name, correct?" Anastasia asks, taking a bite of her blueberry muffin.</p>
+      <p>"Correct, Your Highness!" I answer, also taking a bite of my muffin. "You can call me Cass or Ca." I want to say Cassy, but the word stays lodged in my throat.</p>
+      <p>That nickname still stings to say or even think about.</p>
+      <p>It was Lillia's nickname for me. Now it is just a bitter reminder of what she has become.</p>
+      <p>"Just call me Cass or Cassandra. Whichever you prefer." I smile faintly and brush a few crumbs off the table.</p>
+      <p>"Very well, Cassandra." Anastasia tosses her wrapper into the bin and fixes her icy blue gaze on me. "Why are you here? You don't seem like the type to travel with someone held in as high regard as the Blue Saint herself."</p>
+      <p>I gulp and try to muster an appropriate response.</p>
+      <p>The answer is not even remotely simple. In fact, I am not entirely sure I understand why I am tagging along with her.</p>
+      <p>You see, after the Starport incident on Elespia IV, the Blue Saint herself paid me a little visit. To her credit, she did not hide why.</p>
+      <p>In fact, I had predicted Persephone would catch either her attention or Darkness's at some point.</p>
+      <p>I just wish I were not her sole source of knowledge about that violet-eyed sadist.</p>
+      <p>Because I barely understand Persephone myself.</p>
+      <p>Regardless, I told the Blue Saint everything I could about who and what Persephone was. Even about how she and my best friend merged into one unique being, and how she still goes by Persephone just because she can.</p>
+      <p>"Cass. Cassandra!" Anastasia snaps her fingers, forcing me back to this reality.</p>
+      <p>"Sorry. I get lost in my own head a lot." I shake my head and brush my hand through my hair.</p>
+      <p>"Truth is, I do not know why I am here." I take a deep breath and lean back in my chair.</p>
+      <p>"A few months ago, I was set to graduate from college and become a full-fledged adult and everything. Then this virus hits my world." I lean forward and chuckle. "And now I am here talking to you and tagging along with an actual Original."</p>
+      <p>Anastasia just looks at me as I smile and shrug. She can believe it or not. It matters little to me.</p>
+      <p>I find my life unbelievable, and I am the one living it.</p>
+      <p>"Well, it is good I am not the only one with such a chaotic life," Anastasia says, leaning back in her seat and chuckling.</p>
+      <p>"Being queen is not at all what it is cracked up to be, I will tell you what."</p>
+      <p>"You mean it is not all talking to animals, having household objects start dancing, and cleaning your entire castle?" I clasp a hand to my mouth and feign surprise. "Tell me I have not been lied to all my life."</p>
+      <p>Anastasia genuinely laughs for the first time in weeks.</p>
+      <p>"Nah, that only happens when you are a princess." She stands up and raises her hands. "As soon as the crown touched my head, reality stepped in and ruined the mystique of it all."</p>
+      <p>Her smile shifts into a frown.</p>
+      <p>"It was a lot for a sixteen-year-old. And it still is, twenty years later."</p>
+      <p>The solemn pain in her voice takes me aback. In that moment, I can see the burden she is carrying on her shoulders.</p>
+      <p>I stand up from my chair and make my way toward her.</p>
+      <p>With a friendly, comforting smile, I place my hand on her shoulder as the door flies open behind us.</p>
+      <p>And then my world goes psychedelic.</p>
+    </div>
+
+    <!-- CHAPTER TWO -->
+    <div class="chapter-block">
+      <span class="chapter-label">Chapter Two</span>
+      <h2 class="chapter-title">Can I Just Stay in One Reality Please?</h2>
+      <span class="chapter-pov">Past / Present — Cassandra</span>
+      <div class="chapter-divider"></div>
+
+      <p>A pair of glowing red eyes greets me in the dark. They stare as I struggle to get my bearings.</p>
+      <p>Even in the blackness, their glow lets me see my hands, tinted red. I lift them to my face and squint, trying to adjust.</p>
+      <p>"Um, hello?" I ask, unsure what I'm looking at.</p>
+      <p>The eyes are high off the ground. A Shadow, maybe. At least I think so. It is dangerous to assume anything. That is a lesson I am finally starting to learn.</p>
+      <p>They continue to hover and stare. No hum, breathing, or sound at all.</p>
+      <p>It is deeply unnerving and I hate it.</p>
+      <p>"Strong, silent type," I mutter, glancing around the empty void. "Could you at least—"</p>
+      <p>A flash of light interrupts me.</p>
+      <p>Instinctively, I squeeze my eyes shut.</p>
+      <p>When I open them, warm sunlight greets me.</p>
+      <p>I am standing in what looks like the same room I was in with Anastasia. Only this version is brighter, softer, and homier. The kind of place someone could sit for hours and watch the world outside.</p>
+      <p>And the world outside is breathtaking.</p>
+      <p>No flames, smoke, or anti-air lighting up the sky.</p>
+      <p>The city, reduced now to a modest town, stretches peacefully across the land. Forest spills in from every direction, reclaiming space.</p>
+      <p>It looks like something out of a fairy tale I used to read in high school.</p>
+      <p>Which raises a simple question.</p>
+      <p>How did I get here?</p>
+      <p>I scan the room, making sure no pair of glowing violet eyes waits in the shadows.</p>
+      <p>"Looks like it's just me," I whisper, my shoulders finally loosening.</p>
+      <p>If this is not Persephone's doing, then whose is it?</p>
+      <p>The door handle jiggles.</p>
+      <p>"Shit."</p>
+      <p>I glance around for somewhere to hide and spot an open closet. I sprint for it.</p>
+      <p>With barely a second to spare, I slip inside and pull the door nearly closed, leaving only a thin crack to see through.</p>
+      <p>Maybe whoever walks in will give me answers.</p>
+      <p>A girl can hope.</p>
+      <p>Through the narrow gap, I see a young woman enter. Medium-length white hair, frost-blue eyes, dressed entirely in regal black.</p>
+      <p>Just like Anastasia was earlier.</p>
+      <p>"You have got to be kidding me," I whisper.</p>
+      <p>Did I jump into the past? Or into some alternate timeline?</p>
+      <p>Everything looks too idyllic to be the present.</p>
+      <p>Before I can sort through it, another figure steps forward.</p>
+      <p>I cannot see them clearly, but the temperature drops. A chill crawls up my spine as my thoughts grow heavier, and darker.</p>
+      <p><em>No way it's him.</em></p>
+      <p>"Are you sure you heard what you heard?" the figure asks. Their voice is cold and precise.</p>
+      <p>"Yes. I am completely certain," Anastasia replies, shifting nervously. "They did not know I was there. They were confident."</p>
+      <p>"Wonderful." The figure rests a hand on her shoulder. "You did well. Prepare yourself."</p>
+      <p>Their gaze shifts toward the town.</p>
+      <p>"You are about to be queen. Whether you like it or not."</p>
+      <p>"What?" Anastasia and I say at the same time.</p>
+      <p>Both of them turn toward the closet.</p>
+      <p>My hand clamps over my mouth.</p>
+      <p>The figure raises a finger to their lips.</p>
+      <p>I squeeze my eyes shut, praying whatever brought me here will take me back.</p>
+      <p>I open one eye just in time to see an armored glove wrap around the closet handle.</p>
+      <p>My thoughts scramble for an excuse. Something clever and harmless.</p>
+      <p>Nothing comes.</p>
+      <p>I close my eyes as the door flies open.</p>
+
+      <div class="scene-break">✦ ✦ ✦</div>
+
+      <p>"Cassandra. Earth to Cassandra."</p>
+      <p>A feminine voice snaps in front of my face.</p>
+      <p>I blink and focus on a pair of concerned red eyes framed by white bangs.</p>
+      <p>"Lucy?" I manage, still trying to remember where I am.</p>
+      <p>I'm on a couch. Lying down.</p>
+      <p>With a groan, I sit up and plant my feet on the floor. I fold forward, resting my forehead in my hands, and let out a slow breath.</p>
+      <p>A dull ringing throbs behind my eyes. Not debilitating, just annoying.</p>
+      <p>Lucy stays in front of me, her hand settling on my shoulder like she's grounding me.</p>
+      <p>In the background, a bag crinkles. Someone chews, unbothered.</p>
+      <p>"Is Cass having another episode?" a woman asks between bites. "Where did she end up this time?"</p>
+      <p>"I'm about to ask her that, Liss," Lucy replies, never taking her eyes off me. "Let her breathe for a second."</p>
+      <p>How kind of her.</p>
+      <p>Of all the Shadows, Lucy is the most humane. Still a little obsessive, quirky, but humane. It's refreshing.</p>
+      <p>Liss sounds the same as always. Carefree, sardonic, and apparently in full munchies mode.</p>
+      <p>There are worse people to wake up to after an uninvited time jump.</p>
+      <p>Lucy lowers her voice. "So, did you have an episode?"</p>
+      <p>The nerves in it give her away, even if she's trying to sound steady.</p>
+      <p>I lift my head, meet her eyes, and exhale again.</p>
+      <p>Now I just have to explain where I was in a way that doesn't make me sound insane.</p>
+    </div>
 
   </div>
+
+  <!-- END CTA -->
+  <div class="end-cta">
+    <span class="eyebrow">The Saga Continues</span>
+    <h2>Start from<br><em>the beginning</em></h2>
+    <p>Regicide is coming. In the meantime, catch up on the full Fractured Arc — Episodes 1 through 3 in one volume.</p>
+    <div class="btn-group">
+      <a class="btn" href="https://www.amazon.com/dp/B0GJTZY531" target="_blank" rel="noopener noreferrer">
+        Read the Omnibus
+      </a>
+      <a class="btn btn-ghost" href="/" >
+        ← Back to the Saga
+      </a>
+    </div>
+  </div>
+
 </body>
 </html>
