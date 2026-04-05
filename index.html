@@ -1677,7 +1677,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // ── NATIVE SIGNUP FORM ──
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxsaTs8QdT6bDnid2Ctt7ZjVu2UMwu2nTFo0yKfcZHfNNBkKrQ6PFumFpXSGvg15Wi4/exec';
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzu7Fx1PttT-1R2Cyg-cTUR0QgKCaL7qnFbhsnlLjWo1p0Va2q3EX18LJP8E_fafHa3/exec';
 
   const form        = document.getElementById('signupForm');
   const submitBtn   = document.getElementById('submitBtn');
@@ -1726,11 +1726,15 @@ document.addEventListener("DOMContentLoaded", () => {
       submitBtn.disabled = true;
 
       try {
+        const params = new URLSearchParams();
+        params.append('name', name);
+        params.append('email', email);
+        params.append('timestamp', new Date().toISOString());
+
         await fetch(SCRIPT_URL, {
           method: 'POST',
           mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, timestamp: new Date().toISOString() })
+          body: params
         });
 
 
