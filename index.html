@@ -6,25 +6,15 @@
   <title>The Nightmaric Saga — Omnibus</title>
   <meta name="description" content="A sentient virus awakens. Supersoldiers mobilize. A god begins correcting reality.">
 
-  <meta name="facebook-domain-verification" content="YOUR_VERIFICATION_CODE" />
 
-<!-- Meta Pixel Code -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZJF44JXXEL"></script>
 <script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '944370288015026');
-fbq('track', 'PageView');
-fbq('track', 'ViewContent');
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZJF44JXXEL');
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
-/></noscript>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -567,22 +557,6 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
       line-height: 1.6;
     }
 
-    .form-embed {
-      width: 100%;
-      margin-top: 18px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.02);
-      border-radius: 4px;
-      overflow: hidden;
-    }
-
-    .form-embed iframe {
-      display: block;
-      width: 100%;
-      border: 0;
-      height: 780px;
-    }
-
     .privacy-note {
       margin-top: 14px;
       font-family: 'Syne', sans-serif;
@@ -591,6 +565,139 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
       text-transform: uppercase;
       color: rgba(255,255,255,0.2);
     }
+
+    /* ── NATIVE SIGNUP FORM ── */
+    .native-form-wrap {
+      width: 100%;
+      margin-top: 18px;
+    }
+
+    #signupForm {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      position: relative;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      text-align: left;
+    }
+
+    .field-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(232,228,220,0.45);
+    }
+
+    #signupForm input {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 2px;
+      padding: 16px 18px;
+      color: var(--text);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      font-weight: 300;
+      width: 100%;
+      outline: none;
+      transition: border-color 0.25s, background 0.25s;
+      -webkit-appearance: none;
+    }
+
+    #signupForm input::placeholder {
+      color: rgba(232,228,220,0.2);
+    }
+
+    #signupForm input:focus {
+      border-color: rgba(106,61,232,0.6);
+      background: rgba(106,61,232,0.06);
+    }
+
+    #signupForm input.invalid {
+      border-color: rgba(194,24,91,0.7);
+    }
+
+    .field-error {
+      font-family: 'Syne', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      display: none;
+    }
+
+    .field-error.visible { display: block; }
+
+    .submit-btn {
+      width: 100%;
+      text-align: center;
+      margin-top: 6px;
+      position: relative;
+    }
+
+    .submit-btn .btn-loading {
+      display: none;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .submit-btn.loading .btn-text { visibility: hidden; }
+    .submit-btn.loading .btn-loading { display: block; }
+    .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; pointer-events: none; }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    .form-success.visible { display: block; }
+
+    .success-mark {
+      font-size: 28px;
+      color: var(--accent-light);
+      margin-bottom: 12px;
+    }
+
+    .success-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(22px, 4vw, 32px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .success-sub {
+      font-size: 15px;
+      font-weight: 300;
+      color: rgba(232,228,220,0.55);
+      line-height: 1.6;
+    }
+
+    .form-error-msg {
+      display: none;
+      font-family: 'Syne', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      text-align: center;
+      padding: 12px;
+      border: 1px solid rgba(194,24,91,0.3);
+      border-radius: 2px;
+    }
+
+    .form-error-msg.visible { display: block; }
 
     /* ── FINAL CTA ── */
     .final-cta {
@@ -1009,7 +1116,6 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
       .proof .btn { width: 100%; text-align: center; }
 
       .email-band { padding: 50px 20px; }
-      .form-embed iframe { height: 900px; }
 
       .final-cta { padding: 70px 20px; }
       .final-cta-inner { margin-bottom: 40px; }
@@ -1043,7 +1149,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
     <a class="nav-cta"
        href="https://www.amazon.com/dp/B0GJTZY531"
        target="_blank" rel="noopener noreferrer"
-       onclick="fbq('trackCustom','ClickToAmazon');">
+      >
       Read Now
     </a>
   </nav>
@@ -1069,7 +1175,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
         <a class="btn"
            href="https://www.amazon.com/dp/B0GJTZY531"
            target="_blank" rel="noopener noreferrer"
-           onclick="fbq('trackCustom','ClickToAmazon');">
+          >
           Start the Omnibus
         </a>
         <button class="btn btn-email" onclick="openEmailModal()">
@@ -1123,7 +1229,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
               <span class="flip-eyebrow">Cassandra just wants to live a normal, boring, and uneventful life.</span>
               <h3>The Nightmaric Saga<br><em>Episode One : The Fractured Girl</em></h3>
               <p>Cassandra's a broke college student who wanted a quiet morning. Instead, she gets a ship falling out of the sky, her best friend infected with something ancient and hungry, and a hospital full of people tearing into one another.</p>
-              <a class="btn flip-btn" href="https://www.amazon.com/dp/B0G4ZQB6YC" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
+              <a class="btn flip-btn" href="https://www.amazon.com/dp/B0G4ZQB6YC" target="_blank" rel="noopener noreferrer">Read on Amazon</a>
             </div>
           </div>
         </div>
@@ -1144,7 +1250,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
               <span class="flip-eyebrow">The Blonde Woman makes her move</span>
               <h3>The Nightmaric Saga<br><em>Episode Two : The Fractured Blonde</em></h3>
               <p>Cassandra wakes under Shadow observation with gaps in her memory and fractures in her perception she can't explain. She slips between locations without moving, rooms shift when she looks away, and entire events vanish from recorded reality.</p>
-              <a class="btn flip-btn" href="https://www.amazon.com/dp/B0G6XBNFX2" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
+              <a class="btn flip-btn" href="https://www.amazon.com/dp/B0G6XBNFX2" target="_blank" rel="noopener noreferrer">Read on Amazon</a>
             </div>
           </div>
         </div>
@@ -1165,7 +1271,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
               <span class="flip-eyebrow">Cassandra's and Persephone's world collide.</span>
               <h3>The Nightmaric Saga<br><em>Episode Three : The Fractured Women</em></h3>
               <p>Cassandra wages a desperate final stand against Persephone while reality burns. Combining cosmic horror, dark humor, military chaos, apocalyptic stakes, and a countdown to extinction.</p>
-              <a class="btn flip-btn" href="https://www.amazon.com/dp/B0GG5XFH8P" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
+              <a class="btn flip-btn" href="https://www.amazon.com/dp/B0GG5XFH8P" target="_blank" rel="noopener noreferrer">Read on Amazon</a>
             </div>
           </div>
         </div>
@@ -1186,7 +1292,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
               <span class="flip-eyebrow">Three episodes. One volume.</span>
               <h3>The Nightmaric Saga<br><em>Omnibus</em></h3>
               <p>The complete first arc. Persephone awakens and reality begins to splinter. Reality will never be the same again.</p>
-              <a class="btn flip-btn" href="https://www.amazon.com/dp/B0GJTZY531" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
+              <a class="btn flip-btn" href="https://www.amazon.com/dp/B0GJTZY531" target="_blank" rel="noopener noreferrer">Read on Amazon</a>
             </div>
           </div>
         </div>
@@ -1207,7 +1313,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
               <span class="flip-eyebrow">A 17 year old and an exhausted super soldier stand against Persephone and her blood thirsty hordes.</span>
               <h3>The Nightmaric Saga<br><em>Special Episode : Syriana</em></h3>
               <p>An immortal soldier guards the last way out of a dying world while an eldritch god watches from the crowd, waiting to see who earns her attention.</p>
-              <a class="btn flip-btn" href="https://www.amazon.com/dp/B0GLL77CDT" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
+              <a class="btn flip-btn" href="https://www.amazon.com/dp/B0GLL77CDT" target="_blank" rel="noopener noreferrer">Read on Amazon</a>
             </div>
           </div>
         </div>
@@ -1237,7 +1343,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
       <a class="btn"
          href="https://www.amazon.com/dp/B0GJTZY531"
          target="_blank" rel="noopener noreferrer"
-         onclick="fbq('trackCustom','ClickToAmazon');">
+        >
         Start with the Omnibus
       </a>
     </div>
@@ -1285,7 +1391,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
         <a class="btn"
            href="https://www.amazon.com/stores/Shawn-Carter/author/B0GG64JNSB"
            target="_blank" rel="noopener noreferrer"
-           onclick="fbq('trackCustom','ClickToAmazon');">
+          >
           Enter the Nightmaric Saga
         </a>
       </div>
@@ -1316,7 +1422,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
               <span class="flip-eyebrow">Cassandra just wants to live a normal, boring, and uneventful life.</span>
               <h3>The Nightmaric Saga<br><em>Episode One : The Fractured Girl</em></h3>
               <p>Cassandra's a broke college student who wanted a quiet morning. Instead, she gets a ship falling out of the sky, her best friend infected with something ancient and hungry, and a hospital full of people tearing into one another.</p>
-              <a class="btn flip-btn" href="https://www.amazon.com/dp/B0G4ZQB6YC" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
+              <a class="btn flip-btn" href="https://www.amazon.com/dp/B0G4ZQB6YC" target="_blank" rel="noopener noreferrer">Read on Amazon</a>
             </div>
           </div>
         </div>
@@ -1337,7 +1443,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
               <span class="flip-eyebrow">The Blonde Woman makes her move</span>
               <h3>The Nightmaric Saga<br><em>Episode Two : The Fractured Blonde</em></h3>
               <p>Cassandra wakes under Shadow observation with gaps in her memory and fractures in her perception she can't explain. She slips between locations without moving, rooms shift when she looks away, and entire events vanish from recorded reality.</p>
-              <a class="btn flip-btn" href="https://www.amazon.com/dp/B0G6XBNFX2" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
+              <a class="btn flip-btn" href="https://www.amazon.com/dp/B0G6XBNFX2" target="_blank" rel="noopener noreferrer">Read on Amazon</a>
             </div>
           </div>
         </div>
@@ -1358,7 +1464,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
               <span class="flip-eyebrow">Cassandra's and Persephone's world collide.</span>
               <h3>The Nightmaric Saga<br><em>Episode Three : The Fractured Women</em></h3>
               <p>Cassandra wages a desperate final stand against Persephone while reality burns. Combining cosmic horror, dark humor, military chaos, apocalyptic stakes, and a countdown to extinction.</p>
-              <a class="btn flip-btn" href="https://www.amazon.com/dp/B0GG5XFH8P" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
+              <a class="btn flip-btn" href="https://www.amazon.com/dp/B0GG5XFH8P" target="_blank" rel="noopener noreferrer">Read on Amazon</a>
             </div>
           </div>
         </div>
@@ -1379,7 +1485,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
               <span class="flip-eyebrow">Three episodes. One volume.</span>
               <h3>The Nightmaric Saga<br><em>Omnibus</em></h3>
               <p>The complete first arc. Persephone awakens and reality begins to splinter. Reality will never be the same again.</p>
-              <a class="btn flip-btn" href="https://www.amazon.com/dp/B0GJTZY531" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
+              <a class="btn flip-btn" href="https://www.amazon.com/dp/B0GJTZY531" target="_blank" rel="noopener noreferrer">Read on Amazon</a>
             </div>
           </div>
         </div>
@@ -1400,7 +1506,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
               <span class="flip-eyebrow">A 17 year old and an exhausted super soldier stand against Persephone and her blood thirsty hordes.</span>
               <h3>The Nightmaric Saga<br><em>Special Episode : Syriana</em></h3>
               <p>An immortal soldier guards the last way out of a dying world while an eldritch god watches from the crowd, waiting to see who earns her attention.</p>
-              <a class="btn flip-btn" href="https://www.amazon.com/dp/B0GLL77CDT" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Read on Amazon</a>
+              <a class="btn flip-btn" href="https://www.amazon.com/dp/B0GLL77CDT" target="_blank" rel="noopener noreferrer">Read on Amazon</a>
             </div>
           </div>
         </div>
@@ -1416,26 +1522,54 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
       <h2>Reality is unraveling.<br><em>Be first to witness it.</em></h2>
       <p>New episodes, release dates, and dispatches from the Nightmaric universe — straight to your inbox. Sign up and get the first three chapters free!</p>
 
-      <div class="form-embed">
-        <iframe
-          id="signupFormBottom"
-          src="https://docs.google.com/forms/d/1FIeTCrKHfI6agoQvFyT31quLdj3hKmj1K4qSfhFXtp4/viewform?embedded=true"
-          width="100%"
-          frameborder="0"
-          marginheight="0"
-          marginwidth="0"
-          title="Nightmaric Saga Email Signup"
-        >
-          Loading…
-        </iframe>
-      </div>
+      <div class="native-form-wrap">
+        <form id="signupForm" novalidate>
 
-      <div id="chapterRevealBottom" style="display:none; margin-top:24px; text-align:center;">
-        <p style="margin-bottom:10px; font-weight:600;">✦ You're in.</p>
-        <a href="/first-three-chapters.html" target="_blank"
-           style="display:inline-block; padding:14px 22px; background:#7b2fff; color:white; text-decoration:none; border-radius:6px; font-family:'Syne',sans-serif; font-size:12px; letter-spacing:0.1em; text-transform:uppercase;">
-          Read the First 3 Chapters
-        </a>
+          <div class="field-group">
+            <label for="sigName" class="field-label">Your Name</label>
+            <input
+              type="text"
+              id="sigName"
+              name="name"
+              placeholder="Cassandra"
+              autocomplete="given-name"
+              required
+            />
+            <span class="field-error" id="nameError">Please enter your name.</span>
+          </div>
+
+          <div class="field-group">
+            <label for="sigEmail" class="field-label">Email Address</label>
+            <input
+              type="email"
+              id="sigEmail"
+              name="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+              required
+            />
+            <span class="field-error" id="emailError">Please enter a valid email.</span>
+          </div>
+
+          <button type="submit" class="btn btn-email submit-btn" id="submitBtn">
+            <span class="btn-text">Get the First 3 Chapters</span>
+            <span class="btn-loading" aria-hidden="true">Sending…</span>
+          </button>
+
+          <div class="form-success" id="formSuccess" aria-live="polite">
+            <p class="success-mark">✦</p>
+            <p class="success-title">You're in.</p>
+            <p class="success-sub">Check your inbox — the first three chapters are waiting.</p>
+            <a href="/first-three-chapters.html" class="btn" style="margin-top:20px; display:inline-block;">
+              Read Now →
+            </a>
+          </div>
+
+          <div class="form-error-msg" id="formErrorMsg" aria-live="polite">
+            Something went wrong. Try again in a moment.
+          </div>
+
+        </form>
       </div>
 
       <p class="privacy-note">No spam. Unsubscribe anytime.</p>
@@ -1461,7 +1595,7 @@ src="https://www.facebook.com/tr?id=944370288015026&ev=PageView&noscript=1"
     <div class="footer-links">
       <a href="https://www.amazon.com/stores/Shawn-Carter/author/B0GG64JNSB" target="_blank" rel="noopener noreferrer">Amazon</a>
       <a href="#signup">Newsletter</a>
-      <a href="https://www.amazon.com/dp/B0GJTZY531" target="_blank" rel="noopener noreferrer" onclick="fbq('trackCustom','ClickToAmazon');">Start Reading</a>
+      <a href="https://www.amazon.com/dp/B0GJTZY531" target="_blank" rel="noopener noreferrer">Start Reading</a>
     </div>
     <p>© <span id="year"></span> Shawn Carter — The Nightmaric Saga</p>
   </footer>
@@ -1542,36 +1676,77 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".email-band").scrollIntoView({ behavior: "smooth" });
   };
 
-  // Google Form submit reveal
-  const signupIframeBottom = document.getElementById("signupFormBottom");
-  const revealBottom = document.getElementById("chapterRevealBottom");
+  // ── NATIVE SIGNUP FORM ──
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxsaTs8QdT6bDnid2Ctt7ZjVu2UMwu2nTFo0yKfcZHfNNBkKrQ6PFumFpXSGvg15Wi4/exec';
 
-  if (signupIframeBottom && revealBottom) {
-    let loadCountBottom = 0;
-    signupIframeBottom.addEventListener("load", () => {
-      loadCountBottom += 1;
-      if (loadCountBottom >= 2) {
-        revealBottom.style.display = "block";
-        revealBottom.scrollIntoView({ behavior: "smooth", block: "start" });
+  const form        = document.getElementById('signupForm');
+  const submitBtn   = document.getElementById('submitBtn');
+  const formSuccess = document.getElementById('formSuccess');
+  const formErrMsg  = document.getElementById('formErrorMsg');
+  const nameInput   = document.getElementById('sigName');
+  const emailInput  = document.getElementById('sigEmail');
+  const nameError   = document.getElementById('nameError');
+  const emailError  = document.getElementById('emailError');
+
+  function validateEmail(v) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  }
+
+  function clearErrors() {
+    [nameInput, emailInput].forEach(i => i.classList.remove('invalid'));
+    [nameError, emailError].forEach(e => e.classList.remove('visible'));
+    formErrMsg.classList.remove('visible');
+  }
+
+  function showFieldError(input, errorEl) {
+    input.classList.add('invalid');
+    errorEl.classList.add('visible');
+  }
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearErrors();
+
+      const name  = nameInput.value.trim();
+      const email = emailInput.value.trim();
+      let valid = true;
+
+      if (!name) {
+        showFieldError(nameInput, nameError);
+        valid = false;
+      }
+      if (!email || !validateEmail(email)) {
+        showFieldError(emailInput, emailError);
+        valid = false;
+      }
+      if (!valid) return;
+
+      submitBtn.classList.add('loading');
+      submitBtn.disabled = true;
+
+      try {
+        await fetch(SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, timestamp: new Date().toISOString() })
+        });
+
+
+        form.style.display = 'none';
+        formSuccess.classList.add('visible');
+        formSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      } catch (err) {
+        console.error('Signup error:', err);
+        submitBtn.classList.remove('loading');
+        submitBtn.disabled = false;
+        formErrMsg.classList.add('visible');
       }
     });
   }
 
-  // Responsive iframe height
-  function adjustFormHeight() {
-    const iframe = document.getElementById("signupFormBottom");
-    if (!iframe) return;
-    if (window.innerWidth <= 480) {
-      iframe.style.height = "1000px";
-    } else if (window.innerWidth <= 700) {
-      iframe.style.height = "900px";
-    } else {
-      iframe.style.height = "780px";
-    }
-  }
-
-  adjustFormHeight();
-  window.addEventListener("resize", adjustFormHeight);
 });
   </script>
 </body>
